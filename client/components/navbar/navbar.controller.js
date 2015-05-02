@@ -5,6 +5,14 @@ angular.module('notrApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'Library',
+      'link': '/library'
+    },
+    {
+      'title': 'New Notes',
+      'link': '/notes'
     }];
 
     $scope.isCollapsed = true;
