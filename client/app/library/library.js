@@ -5,6 +5,7 @@ angular.module('notrApp')
     $routeProvider
       .when('/library', {
         templateUrl: 'app/library/library.html',
-        controller: 'LibraryCtrl'
+        controller: 'LibraryCtrl',
+        authenticate: true
       });
   });
