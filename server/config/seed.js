@@ -6,6 +6,7 @@
 'use strict';
 
 var User = require('../api/user/user.model');
+var Note = require('../api/note/note.model');
 
 User.find({}).remove(function() {
   User.create({
@@ -23,4 +24,14 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Note.find({}).remove(function() {
+  Note.create({
+    name: 'cs498rk final',
+    description: '"notes" on the cs498rk final',
+    price: 1,
+    ref: "temp",
+    comments: []
+  });
 });
