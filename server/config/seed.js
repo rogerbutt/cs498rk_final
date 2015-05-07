@@ -35,6 +35,7 @@ User.find({}).remove(function() {
             Note.create({
               name: 'cs498rk final',
               owner: test._id,
+              ownerName: test.name,
               classRef: c._id,
               description: '"notes" on the cs498rk final',
               price: 1,
