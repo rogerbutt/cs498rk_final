@@ -17,6 +17,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/search')}"><a href="/search">Search</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/dashboard')}"><a href="/dashboard">Dashboard</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/library')}"><a href="/library">Library</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
@@ -25,7 +28,7 @@
   </div>
 </div>
 
-<header class="hero-unit" id="banner">
+<!-- <header class="hero-unit" id="banner">
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
@@ -52,7 +55,7 @@
       </span>
     </p>
   </form>
-</div>
+</div> -->
 
 <footer class="footer">
   <div class="container">
