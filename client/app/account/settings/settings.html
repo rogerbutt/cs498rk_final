@@ -1,17 +1,54 @@
 
 <div class="container">
+  <br />
+  <br />
   <div class="row" style="text-align:center;">
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="padding-bottom:15px;">
       <img src="./assets/images/sample.png" alt="profile picture" />
     </div>
+    <div class="col-sm-12" style="padding-bottom:15px;">
+      <h4>Jane Doe</h4>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-default" style="float:right;">Balance (${{user.balance}})</button>
+    </div>
+    <div class="col-sm-6">
+      <a class="btn btn-default" href="/accountinfo" role="button" style="float:left;">Edit Account Info</a>
+    </div>
+  </div>
+  <br />
+  <div class="row">
     <div class="col-sm-12">
-      <span><h4>Lorem ipsum. Should be generated from the backend.</h4></span>
-    </div>
-    <div class="col-sm-6">
-      <a class="btn btn-default" href="#" role="button">Balance ($$$)</a>
-    </div>
-    <div class="col-sm-6">
-      <a class="btn btn-default" href="#" role="button">Edit Account Info</a>
+      <h4>Recently Reviewed</h4>
+      <!-- TODO: Create sort by ratings and date-->
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>Lecture 3</td>
+            <td>Notes on thermonuclear astrophysics</td>
+            <td>March 17, 2015</td>
+            <td><span class="stars" id="stars">3.5</span></td> <!-- Need to visualize in stars :D -->
+          </tr>
+          <tr>
+            <td>Notes 2</td>
+            <td>Thermonuclear astrophysics lecture</td>
+            <td>March 17, 2015</td>
+            <td><span class="stars">4</span></td> <!-- Need to visualize in stars :D -->
+          </tr>
+          <!-- <tr ng-repeat="review in reviews">
+            <td>{{review.name}}</td>
+            <td>{{review.summary}}</td>
+            <td>{{review.date}}</td>
+            <td>{{review.rating}}</td>
+          </tr> -->
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('.stars').stars();
+  });
+</script>
