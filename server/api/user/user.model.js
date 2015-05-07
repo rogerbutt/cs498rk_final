@@ -12,6 +12,9 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  credits: Number,
+  ownedNotes: [String],
+  boughtNotes: [String],
   hashedPassword: String,
   provider: String,
   salt: String,

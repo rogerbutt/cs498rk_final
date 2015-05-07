@@ -1,3 +1,17 @@
-<div class="col-md-12">
-This is the dashboard view.
+<div ng-controller="DashboardCtrl">
+	<div ng-include="'components/navbar/navbar.html'"></div>
+	<div class="dashboard-container">
+
+		{{message}}
+		<span class="notes-feed">Notes feed</span>
+		<span ng-click='sort="rating"'>newest</span>
+		<span ng-click='sort="date"'>rating</span>
+		<div ng-repeat="note in notes | orderBy:sort">	
+			<div class="row">
+	  			<div class="col-md-3">{{note.name}}</div>
+	  			<div class="col-md-3">{{note.description}}</div>
+	  			<div class="col-md-3">{{note.date}}</div>
+	  			<div class="col-md-3">{{note.rating}}</div>
+			</div>
+		</div>
 </div>
