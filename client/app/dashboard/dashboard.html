@@ -5,11 +5,11 @@
 			<div class="col-md-2 same-height">
 				<h3>Notes Feed</h1>
 			</div>
-			<div class="col-md-4 same-height">
+			<div class="col-md-2 same-height">
 				<span ng-click='sort="date"'>newest</span>
 				<span style="margin-left:20px"ng-click='sort="-rating"'>rating</span>
 			</div>
-			<div class="col-md-6 same-height new-note-button">
+			<div class="col-md-8 same-height new-note-button">
 				<a href="/uploadNote" type="button" class="btn btn-primary">Add Notes</a>	
 			</div>
 		</div>		
@@ -19,7 +19,11 @@
 	  			<div class="col-md-3">+ {{note.name}}</div>
 	  			<div class="col-md-3">{{note.description}}</div>
 	  			<div class="col-md-3">{{note.date}}</div>
-	  			<div class="col-md-3">{{note.rating}}</div>
+	  			<div class="col-md-3">
+					<div class="rating">
+						<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+					</div>
+	  			</div>
 			</div>
 		</div> <br><br><br>
 
