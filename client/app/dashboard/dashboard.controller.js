@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('DashboardCtrl', function ($scope) {
+  .controller('DashboardCtrl',['$scope', 'Modal', function ($scope, Modal) {
     $scope.message = 'Hello';
     $scope.notes = [{
     	name: "Note1",
@@ -24,4 +24,8 @@ angular.module('notrApp')
     	date:new Date(),
     	rating:5 
     }];
-  });
+
+    $scope.openModal = function(){
+    	console.log("Here");
+    }
+  }]);

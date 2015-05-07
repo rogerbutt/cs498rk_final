@@ -6,3 +6,20 @@
 .notes-feed{
 	
 }
+
+.row .head{
+	display:table;
+}
+
+.same-height{
+	float:none;
+	display:table-cell;
+}
+
+.new-note-button{
+	text-align: right;
+}
+
+.dash-notes{
+	margin-top:15px;
+}

@@ -1,14 +1,17 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="search-container" ng-controller="SearchCtrl">
+  <div style="text-align: center">
+    <span class="notr"><strong>notr.io</strong></span>
+  </div> 
   <div class="notes-search">
-    <input type="text" ng-model="search" class="form-control search" placeholder="Search for notes...">
+    <input type="text" ng-model="search" class="search" placeholder="Search for notes...">
   </div>
   <div class="results" ng-hide="!search">
       <ul>
           <li ng-repeat="note in notes | filter:search">
             <a href="">
               <div class="result">
-                  <div><h5>{{note.title}}</h5></div>
+                  <div><h5>{{note.name}}</h5></div>
               </div>
             </a><hr>
           </li>

@@ -1,17 +1,39 @@
 <div ng-controller="DashboardCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
 	<div class="dashboard-container">
-
-		{{message}}
-		<span class="notes-feed">Notes feed</span>
-		<span ng-click='sort="rating"'>newest</span>
-		<span ng-click='sort="date"'>rating</span>
+		<div class="row head">
+			<div class="col-md-2 same-height">
+				<h3>Notes Feed</h1>
+			</div>
+			<div class="col-md-4 same-height">
+				<span ng-click='sort="date"'>newest</span>
+				<span style="margin-left:20px"ng-click='sort="-rating"'>rating</span>
+			</div>
+			<div class="col-md-6 same-height new-note-button">
+				<a href="/uploadNote" type="button" class="btn btn-primary">Add Notes</a>	
+			</div>
+		</div>		
+		
 		<div ng-repeat="note in notes | orderBy:sort">	
-			<div class="row">
-	  			<div class="col-md-3">{{note.name}}</div>
+			<div class="row dash-notes">
+	  			<div class="col-md-3">+ {{note.name}}</div>
 	  			<div class="col-md-3">{{note.description}}</div>
 	  			<div class="col-md-3">{{note.date}}</div>
 	  			<div class="col-md-3">{{note.rating}}</div>
+			</div>
+		</div> <br><br><br>
+
+		<div class="row head">
+			<div class="col-md-2 same-height">
+				<h3>Library</h1>
+			</div>
+		</div>
+
+		<div ng-repeat="note in notes | orderBy:sort">	
+			<div class="row dash-notes">
+	  			<div class="col-md-3">+ {{note.name}}</div>
+	  			<div class="col-md-3">{{note.description}}</div>
+	  			<div class="col-md-6" style="text-align:right;">{{note.date}}</div>
 			</div>
 		</div>
 </div>
