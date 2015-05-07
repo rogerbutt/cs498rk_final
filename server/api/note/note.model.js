@@ -9,6 +9,7 @@ var NoteSchema = new Schema({
   description: String,
   price: { type: Number, min: 0 },
   ref: String,
+  date: { type: Date, default: Date.now },
   comments: [String]
 });
 
