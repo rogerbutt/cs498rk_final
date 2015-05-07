@@ -1,5 +1,7 @@
 
 <div class="container">
+  <br />
+  <br />
   <div class="row" style="text-align:center;">
     <div class="col-sm-12">
       <img src="./assets/images/sample.png" alt="profile picture" />
@@ -8,10 +10,39 @@
       <span><h4>Lorem ipsum. Should be generated from the backend.</h4></span>
     </div>
     <div class="col-sm-6">
-      <a class="btn btn-default" href="#" role="button">Balance ($$$)</a>
+      <a class="btn btn-default" href="#" role="button" style="float:right;">Balance ($$$)</a>
     </div>
     <div class="col-sm-6">
-      <a class="btn btn-default" href="#" role="button">Edit Account Info</a>
+      <a class="btn btn-default" href="#" role="button" style="float:left;">Edit Account Info</a>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Recently Reviewed</h4>
+      <!-- TODO: Create sort by ratings and date-->
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>Lecture 3</td>
+            <td>Notes on thermonuclear astrophysics</td>
+            <td>March 17, 2015</td>
+            <td><span class="stars" data-rating="3.5"></span></td> <!-- Need to visualize in stars :D -->
+          </tr>
+          <tr>
+            <td>Notes 2</td>
+            <td>Thermonuclear astrophysics lecture</td>
+            <td>March 17, 2015</td>
+            <td><span class="stars" data-rating="4"></span></td> <!-- Need to visualize in stars :D -->
+          </tr>
+          <!-- <tr ng-repeat="review in reviews">
+            <td>{{review.name}}</td>
+            <td>{{review.summary}}</td>
+            <td>{{review.date}}</td>
+            <td>{{review.rating}}</td>
+          </tr> -->
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
