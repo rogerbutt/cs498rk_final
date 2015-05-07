@@ -4,11 +4,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-  name: String,
   user: String,
   rating: Number,
   note: String,
-  body: String
+  body: String,
+  noteRef: String
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

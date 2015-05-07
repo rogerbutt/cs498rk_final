@@ -8,6 +8,7 @@
 var User = require('../api/user/user.model');
 var Note = require('../api/note/note.model');
 var Classes = require('../api/classes/classes.model');
+var Comment = require('../api/comment/comment.model');
 
 User.find({}).remove(function() {
   User.create({
@@ -42,6 +43,20 @@ User.find({}).remove(function() {
               ratingTotal: 50,
               ratingNum: 10,
               ref: "temp"
+            }, function(err, note) {
+              Comment.find({}).remove(function() {
+                Comment.create({
+                  user: test._id,
+                  rating: 5,
+                  note: note._id,
+                  body: 'Such note',
+                  noteRef: note._id
+                }, function(err, comment) {
+                  note.comments.push(comment._id);
+                  note.save();
+                });
+
+              })
             });
           });
         });

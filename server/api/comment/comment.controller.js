@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 
 // Get a single comment
 exports.show = function(req, res) {
-  Comment.findById(req.params.id, function (err, comment) {
+  Comment.find({noteRef: req.params.id}, function (err, comment) {
     if(err) { return handleError(res, err); }
     if(!comment) { return res.send(404); }
     return res.json(comment);

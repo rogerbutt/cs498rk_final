@@ -1,6 +1,14 @@
 'use strict';
 
 angular.module('notrApp')
-  .service('commentsService', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+  .factory('commentsService', ['$resource', function ($resource) {
+    return $resource('/api/comments/:id', {
+    	id: '@_id'
+    },
+    {
+    	getComments : {
+    		method: 'GET', 
+    		isArray: true
+    	}
+    });
+   }]);
