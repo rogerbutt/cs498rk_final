@@ -7,6 +7,7 @@
 
 var User = require('../api/user/user.model');
 var Note = require('../api/note/note.model');
+var Classes = require('../api/classes/classes.model');
 
 User.find({}).remove(function() {
   User.create({
@@ -20,20 +21,33 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
+  }, function(err, test, admin) {
       console.log('finished populating users');
+
+      Classes.find({}).remove(function() {
+        Classes.create({
+          name: 'Web Programming',
+          college: 'University of Illinois',
+          department: 'CS',
+          number: '498'
+        }, function (err, c) {
+          Note.find({}).remove(function() {
+            Note.create({
+              name: 'cs498rk final',
+              owner: test._id,
+              ownerName: test.name,
+              classRef: c._id,
+              description: '"notes" on the cs498rk final',
+              price: 1,
+              ratingTotal: 50,
+              ratingNum: 10,
+              ref: "temp"
+            });
+          });
+        });
+      });
+
+
     }
   );
-});
-
-Note.find({}).remove(function() {
-  Note.create({
-    name: 'cs498rk final',
-    description: '"notes" on the cs498rk final',
-    price: 1,
-    ratingTotal: 50,
-    ratingNum: 10,
-    ref: "temp",
-    comments: []
-  });
 });

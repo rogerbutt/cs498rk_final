@@ -1,3 +1,10 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
 <div class="col-md-12">
-This is the notes view.
+	<h1>{{note.name}}</h1>
+	<h3>Price: {{note.price}} NotrCoin</h3>
+	<h4>{{note.ownerName}}</h4>
+	<br/>
+	<h4>{{note.description}}</h4>
+	<p>{{note.date}}</p>
 </div>

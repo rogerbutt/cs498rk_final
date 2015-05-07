@@ -5,6 +5,8 @@ var mongoose = require('mongoose'),
 
 var NoteSchema = new Schema({
   name: String,
+  classRef: { type: String, default: 'notr' },
+  ownerName: { type: String, default: 'notr'},
   owner: { type: String, default: 'notr' },
   description: String,
   ratingTotal: { type: Number, default: 0 },
