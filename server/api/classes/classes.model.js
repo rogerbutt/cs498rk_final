@@ -6,6 +6,8 @@ var mongoose = require('mongoose'),
 var ClassSchema = new Schema({
   name: String,
   college: String,
+  department: String,
+  number: Number,
   date: { type: Date, default: Date.now },
   notes: [String]
 });
