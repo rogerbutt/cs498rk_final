@@ -15,5 +15,10 @@ angular.module('notrApp')
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl',
         authenticate: true
+      })
+      .when('/accountinfo', {
+        templateUrl: 'app/account/accountinfo/accountinfo.html',
+        controller: 'AccountInfoCtrl',
+        authenticate: true
       });
   });
