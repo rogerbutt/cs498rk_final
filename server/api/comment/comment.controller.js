@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Comment = require('./comment.model');
+var Note = require('../note/note.model');
 
 // Get list of comments
 exports.index = function(req, res) {
@@ -22,9 +23,25 @@ exports.show = function(req, res) {
 
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
-  Comment.create(req.body, function(err, comment) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, comment);
+
+  var data = req.body;
+
+  Note.findById(data.noteId, function (err, note) {
+
+    note.ratingTotal += data.rating;
+    note.ratingNum += 1;
+
+    if(data.body.length <= 0) {
+      note.save();
+      return res.send(200);
+    }
+
+    Comment.create(req.body, function(err, comment) {
+      if(err) { return handleError(res, err); }
+      note.comments.push(comment._id);
+      note.save();
+      return res.json(201, comment);
+    });
   });
 };
 

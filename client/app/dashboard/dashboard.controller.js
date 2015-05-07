@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('DashboardCtrl',['$scope', 'Modal', function ($scope, Modal) {
+  .controller('DashboardCtrl',['$scope', 'Modal', 'notesService', function ($scope, Modal, notesService) {
     $scope.message = 'Hello';
+    notesService.getNotes(function (notes) {
+        $scope.temp = notes;
+    });
     $scope.notes = [{
     	name: "Note1",
     	description: "Here is a descreption",

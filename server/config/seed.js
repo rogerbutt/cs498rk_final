@@ -31,6 +31,8 @@ Note.find({}).remove(function() {
     name: 'cs498rk final',
     description: '"notes" on the cs498rk final',
     price: 1,
+    ratingTotal: 50,
+    ratingNum: 10,
     ref: "temp",
     comments: []
   });

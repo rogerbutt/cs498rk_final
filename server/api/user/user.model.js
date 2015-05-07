@@ -16,6 +16,7 @@ var UserSchema = new Schema({
   ownedNotes: [String],
   boughtNotes: [String],
   hashedPassword: String,
+  paymentInfo: String,
   provider: String,
   salt: String,
   facebook: {},
