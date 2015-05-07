@@ -5,11 +5,13 @@ var mongoose = require('mongoose'),
 
 var NoteSchema = new Schema({
   name: String,
-  owner: String,
+  owner: { type: String, default: 'notr' },
   description: String,
-  price: Number,
+  price: { type: Number, min: 0 },
   ref: String,
-  comments: String
+  comments: [String]
 });
+
+// Validation
 
 module.exports = mongoose.model('Note', NoteSchema);
