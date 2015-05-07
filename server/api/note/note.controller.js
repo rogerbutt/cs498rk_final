@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Note = require('./note.model');
+var User = require('../user/user.model');
 
 // Get list of notes
 exports.index = function(req, res) {
@@ -32,6 +33,14 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Note.create(req.body, function(err, note) {
     if(err) { return handleError(res, err); }
+
+    if(note.owner !== 'notr') {
+      User.findById(note.owner, function (err, user) {
+        user.ownedNotes.push(note._id);
+        user.save();
+      });
+    }
+
     return res.json(201, note);
   });
 };

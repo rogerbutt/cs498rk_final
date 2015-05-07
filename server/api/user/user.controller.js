@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var Note = require('../note/note.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -8,6 +9,15 @@ var jwt = require('jsonwebtoken');
 var validationError = function(res, err) {
   return res.json(422, err);
 };
+
+var checkPurchased = function(id, idlst) {
+  for(var i = 0; i < idlst.length; i++) {
+    if(id === idlst[i]) {
+      return true;
+    }
+  }
+  return false;
+}
 
 /**
  * Get list of users
@@ -76,6 +86,58 @@ exports.changePassword = function(req, res, next) {
     } else {
       res.send(403);
     }
+  });
+};
+
+/**
+ * Purchase note
+ */
+exports.purchase = function(req, res, next) {
+  var userId = req.user._id;
+  var noteId = String(req.body.noteId);
+
+  User.findById(userId, function (err, user) {
+    Note.findById(noteId, function (err, note) {
+
+      if(!checkPurchased(noteId, user.ownedNotes)
+        && !checkPurchased(noteId, user.boughtNotes)
+        && user.credits >= note.price) {
+
+        // Credit the owner
+        if(note.owner !== 'notr') {
+          User.findById(note.owner, function(err, owner) {
+            owner.credits += note.price;
+            owner.save();
+          });
+        }
+        user.credits -= note.price;
+        user.boughtNotes.push(noteId);
+
+        user.save(function(err) {
+          if (err) return validationError(res, err);
+          res.send(200);
+        });
+      }
+      else {
+        res.send(403);
+      }
+    });
+  });
+};
+
+/**
+ * Add credits to the account
+ */
+exports.credit = function(req, res, next) {
+  var userId = req.user._id;
+  var credits = parseInt(req.body.credits);
+
+  User.findById(userId, function (err, user) {
+    user.credits += credits;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
   });
 };
 
