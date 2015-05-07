@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('NotesCtrl', function ($scope) {
+  .controller('NotesCtrl', [ 'notesService', '$routeParams', function ($scope, notesService, $routeParams) {
     $scope.message = 'Hello';
-  });
+  }]);
