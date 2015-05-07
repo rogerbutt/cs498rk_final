@@ -1,4 +1,49 @@
 <div ng-controller="UploadNoteCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
-	<input type="file" id="file" name="files[]" multiple>
+	<!-- <input type="file" id="file" name="files[]" multiple>
+	    <object id="preview-object" type="application/pdf">
+	        <embed id="preview-embed"type="application/pdf" />
+	    </object> -->
+		<div class="upload-note-container">
+			<!-- <a href="#" class="btn btn-primary" type="button" onclick="document.getElementById('fileID').click(); return false;">Browse</a> <input id="fileID" type="file" onchange="PreviewImage()" style="visibility: hidden; display: none;" /> -->
+			<div class="row head">
+				<div class="col-md-6 same-height">
+					<h3>Upload Notes to Library</h3>
+				</div>
+				<div class="col-md-6 same-height">
+					<span class="btn btn-default btn-file"> Browse
+				    <input id="uploadPDF" type="file" onchange="PreviewImage()" name="myPDF"/>&nbsp;
+				    </span>
+				    <span id="upload-note-button"></span>
+				</div>
+			</div>
+
+			<form class="form-inline">
+				<div class="form-group" id="set-price">
+					
+				</div>
+			</form>
+
+<!-- 			<div class="row head">
+				<div id="set-price-label"class="col-md-6 same-height">
+					
+				</div>
+				<div id="set-price"class="col-md-6 same-height">
+					
+				</div>
+			</div> -->
+			
+	        <div style="clear:both">
+	           <iframe id="viewer" frameborder="0" scrolling="no" width="100%" height="720"></iframe>
+	        </div>
+        </div>
+	<script type="text/javascript">
+		function PreviewImage() {
+		    pdffile=document.getElementById("uploadPDF").files[0];
+		    pdffile_url=URL.createObjectURL(pdffile);
+		    $('#viewer').attr('src',pdffile_url);
+		    $("#upload-note-button").html('<button class="btn btn-primary">Upload</button')
+		    $("#set-price").html("<label for='price'><h3>Price your notr</h3></label> <input style='margin-left: 20px;' class='form-control' ng-model='price' type='text'>");
+		}
+	</script>
 </div>
