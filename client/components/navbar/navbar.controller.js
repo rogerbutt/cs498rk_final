@@ -3,16 +3,16 @@
 angular.module('notrApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
+      'title': 'Search',
+      'link': '/search'
     },
     {
       'title': 'Library',
       'link': '/library'
     },
     {
-      'title': 'New Notes',
-      'link': '/notes'
+      'title': 'Dashboard',
+      'link': '/dashboard'
     }];
 
     $scope.isCollapsed = true;
