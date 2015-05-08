@@ -1,35 +1,19 @@
 <div ng-controller="UploadNoteCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
-		<div class="upload-note-container">
-			<div class="row head">
-				<div class="col-md-6 same-height">
-					<h3>Upload Notes to Library</h3>
-				</div>
-				<div class="col-md-6 same-height">
-					<span class="btn btn-default btn-file"> Browse
-				    <input id="uploadPDF" type="file" onchange="PreviewImage()" name="myPDF"/>&nbsp;
-				    </span>
-				    <span id="upload-note-button"></span>
-				</div>
-			</div>
+	<div class="upload-note-container">
+		<div ngf-drop ng-model="files" class="drop-box" 
+	        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+	        ngf-accept="'.jpg,.png,.pdf'">PDF file here</div>
+	    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+	    
+	    File Preview: <iframe ngf-src="files[0]"></iframe>
 
-			<form class="form-inline">
-				<div class="form-group" id="set-price">
-					
-				</div>
-			</form>
-			
-	        <div style="clear:both">
-	           <iframe id="viewer" frameborder="0" scrolling="no" width="100%" height="720"></iframe>
-	        </div>
-        </div>
-	<script type="text/javascript">
-		function PreviewImage() {
-		    pdffile=document.getElementById("uploadPDF").files[0];
-		    pdffile_url=URL.createObjectURL(pdffile);
-		    $('#viewer').attr('src',pdffile_url);
-		    $("#upload-note-button").html('<button class="btn btn-primary">Upload</button')
-		    $("#set-price").html("<label for='price'><h3>Price your notr</h3></label> <input style='margin-left: 20px;' class='form-control' ng-model='price' type='text'>");
-		}
-	</script>
+	    <form ng-model="note">
+	    	Name: <input type="text" name="name" placeholder="Name" />
+	    	<br />
+	    	Description: <input type="text" name="description" placeholder="Description" />
+	    	<br />
+	    	Price: <input type="number" name="price" placeholder="price" />
+	    </form>
+    </div>
 </div>

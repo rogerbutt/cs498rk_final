@@ -1,14 +1,23 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
-    $scope.errors = {};
-    $scope.user = User.get();
-    console.log($scope.currentUser);
-/*  $scope.user = { 'name': 'Jane Doe', 
-                    'balance': '4.98',
-                    'reviews': '[{"name": "Lecture 3", "summary": "Thermonuclear astrophysics lecture", "date": "March 17, 2015", "rating": "3.98"}]'};
-*/
+  .controller('SettingsCtrl', function ($scope, User, Auth, notesService) {
+    $scope.errors = {}; 
+    $scope.reviews = [];
+    var notes = notesService.getNotes();
+    $scope.user = User.get(function (result) {
+      for (var i in result.boughtNotes) {
+        for (var j in notes) {
+          if (result.boughtNotes[i] == notes[j].ref) {
+            notes[j].date = new Date(notes[j].date).toDateString();
+            $scope.reviews.push(notes[j]);
+          }
+        }
+      }
+      return result;
+    });
+
+
     $scope.changePassword = function(form) {
       $scope.submitted = true;
       if(form.$valid) {

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var CommentSchema = new Schema({
   user: String,
   rating: Number,
-  note: String,
+  // note: String,
   body: String,
   noteRef: String
 });

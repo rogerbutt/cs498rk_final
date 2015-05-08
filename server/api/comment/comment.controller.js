@@ -26,8 +26,8 @@ exports.create = function(req, res) {
 
   var data = req.body;
 
-  Note.findById(data.noteId, function (err, note) {
-
+  Note.findById(data.noteRef, function (err, note) {
+    if(err) { return handleError(res, err); }
     note.ratingTotal += data.rating;
     note.ratingNum += 1;
 
