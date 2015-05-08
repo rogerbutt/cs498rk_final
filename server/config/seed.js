@@ -21,7 +21,9 @@ User.find({}).remove(function() {
     role: 'admin',
     name: 'Admin',
     email: 'admin@admin.com',
-    password: 'admin'
+    password: 'admin',
+    credits: 5,
+    boughtNotes: ['425midtermI']
   }, function(err, test, admin) {
       console.log('finished populating users');
 
@@ -58,6 +60,40 @@ User.find({}).remove(function() {
 
               })
             });
+          });
+        });
+      });
+
+      Classes.find({}).remove(function() {
+        Classes.create({
+          name: 'Distributed Systems',
+          college: 'University of Illinois',
+          department: 'CS',
+          number: '425'
+        }, function (err, c) {
+          Note.find({}).remove(function() {
+            Note.create({
+              name: 'cs425 homework 3',
+              owner: admin._id,
+              ownerName: admin.name,
+              classRef: c._id,
+              description: 'solution to homework 3 for spring 2014',
+              price: 1,
+              ratingTotal: 50,
+              ratingNum: 10,
+              ref: "425hw3"
+            }),
+            Note.create({
+              name: 'cs425 midterm I',
+              owner: test._id,
+              ownerName: test.name,
+              classRef: c._id,
+              description: 'practice midterm for fall 2012',
+              price: 1,
+              ratingTotal: 50,
+              ratingNum: 10,
+              ref: "425midtermI"
+            })
           });
         });
       });

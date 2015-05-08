@@ -7,10 +7,10 @@
       <img src="./assets/images/sample.png" alt="profile picture" />
     </div>
     <div class="col-sm-12" style="padding-bottom:15px;">
-      <h4>Jane Doe</h4>
+      <h3>{{user.name}}</h3>
     </div>
     <div class="col-sm-6">
-      <button class="btn btn-default" style="float:right;">Balance (${{user.balance}})</button>
+      <button class="btn btn-default" style="float:right;">Balance (${{user.credits}})</button>
     </div>
     <div class="col-sm-6">
       <a class="btn btn-default" href="/accountinfo" role="button" style="float:left;">Edit Account Info</a>
@@ -19,28 +19,28 @@
   <br />
   <div class="row">
     <div class="col-sm-12">
-      <h4>Recently Reviewed</h4>
+      <h3>Recently Reviewed</h3>
       <!-- TODO: Create sort by ratings and date-->
       <table class="table table-striped">
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>Lecture 3</td>
             <td>Notes on thermonuclear astrophysics</td>
             <td>March 17, 2015</td>
-            <td><span class="stars" id="stars">3.5</span></td> <!-- Need to visualize in stars :D -->
+            <td><span class="stars" id="stars">{{lecture.rating}}</span></td>
           </tr>
           <tr>
             <td>Notes 2</td>
             <td>Thermonuclear astrophysics lecture</td>
             <td>March 17, 2015</td>
-            <td><span class="stars">4</span></td> <!-- Need to visualize in stars :D -->
-          </tr>
-          <!-- <tr ng-repeat="review in reviews">
-            <td>{{review.name}}</td>
-            <td>{{review.summary}}</td>
-            <td>{{review.date}}</td>
-            <td>{{review.rating}}</td>
+            <td><span class="stars">{{lecture.rating}}</span></td> 
           </tr> -->
+          <tr ng-repeat="notes in reviews">
+            <td><h6>{{notes.name}}</h6></td>
+            <td><h6 style="font-weight:normal;">{{notes.description}}</h6></td>
+            <td><h6 style="font-weight:normal;">{{notes.date}}</h6></td>
+            <td><span class="stars">{{notes.rating}}</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
