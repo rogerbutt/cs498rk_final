@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('NotesCtrl', [ 'User', '$scope', 'notesService', '$routeParams', 'commentsService', function (User, $scope, notesService, $routeParams, commentsService) {
+  .controller('NotesCtrl', [ 'User', '$scope', 'notesService', '$routeParams', 'commentsService', '$sce', function (User, $scope, notesService, $routeParams, commentsService, $sce) {
     notesService.getNote({ id: $routeParams.id }, function (note) {
     	$scope.note = note;
     	$scope.rating = note.ratingTotal / note.ratingNum;
+        $sce.trustAsResourceUrl(note.ref);
     	// $scope.comments = note.comments;
     });
     commentsService.getComments({ id: $routeParams.id }, function (comments) {

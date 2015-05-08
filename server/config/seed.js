@@ -42,7 +42,7 @@ User.find({}).remove(function() {
               price: 1,
               ratingTotal: 50,
               ratingNum: 10,
-              ref: "temp"
+              ref: "https://s3-us-west-2.amazonaws.com/cs498rk-notr/cs498rknote.pdf"
             }, function(err, note) {
               Comment.find({}).remove(function() {
                 Comment.create({
