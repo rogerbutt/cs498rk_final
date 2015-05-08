@@ -71,6 +71,11 @@ exports.destroy = function(req, res) {
   });
 };
 
+// Get the s3 credientials
+exports.policy = function(req, res) {
+
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }

@@ -5,6 +5,7 @@ angular.module('notrApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ngFileUpload',
   'btford.socket-io',
   'ui.bootstrap'
 ])

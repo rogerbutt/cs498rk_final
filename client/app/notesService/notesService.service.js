@@ -17,6 +17,9 @@ angular.module('notrApp')
           searchopts : '?select={"name" : 1}'
         }
       },
+      createNote : {
+        method : 'POST'
+      },
       getNote : {
         method : 'GET'
       },
