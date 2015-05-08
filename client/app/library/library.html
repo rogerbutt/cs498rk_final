@@ -1,1 +1,17 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>Library</h3>
+		</div>
+		<table class="table table-striped">
+        	<tbody>
+        		<tr ng-repeat="file in files">
+		            <td><h6>{{file.name}}</h6></td>
+		            <td><h6 style="font-weight:normal;">{{file.summary}}</h6></td>
+		            <td><h6 style="font-weight:normal;">{{file.date}}</h6></td>
+		        </tr>
+        	</tbody>
+        </table>
+	</div>
+</div>

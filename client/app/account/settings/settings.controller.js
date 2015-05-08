@@ -3,7 +3,12 @@
 angular.module('notrApp')
   .controller('SettingsCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
-
+    $scope.user = User.get();
+    console.log($scope.currentUser);
+/*  $scope.user = { 'name': 'Jane Doe', 
+                    'balance': '4.98',
+                    'reviews': '[{"name": "Lecture 3", "summary": "Thermonuclear astrophysics lecture", "date": "March 17, 2015", "rating": "3.98"}]'};
+*/
     $scope.changePassword = function(form) {
       $scope.submitted = true;
       if(form.$valid) {
