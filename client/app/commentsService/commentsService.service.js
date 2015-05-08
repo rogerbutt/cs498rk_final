@@ -9,6 +9,9 @@ angular.module('notrApp')
     	getComments : {
     		method: 'GET', 
     		isArray: true
+    	},
+    	postComment : {
+    		method: 'POST'
     	}
     });
    }]);

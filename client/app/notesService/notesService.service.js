@@ -22,6 +22,7 @@ angular.module('notrApp')
       },
       deleteNote: {
         method : 'DELETE'
-      }
+      },
+      
     });
   }]);

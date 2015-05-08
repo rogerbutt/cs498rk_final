@@ -12,22 +12,26 @@
 	</div>
 
 	<div ng-repeat='comment in comments'>
-		<a href="/comments/{{comment._id}}"> <div class="row dash-comments">
-			<div class="col-md-3"> {{comment.body}}</div>
+		<div class="row dash-comments">
+			<div class="col-md-3"> {{comment.body}} {{comment.rating}}</div>
 		</div>
 	</div>
 	
-	<div class="col-sm-12"
+	<div class="col-sm-12">
 		<div class="col-md-8 same-height new-comment-button">
 			<input type="comment" ng-model="comment.body" class="comment-box" placeholder="Enter Comment" required>
+				<span ng-repeat="rating in ratings">
+					<button ng-click="setRating($index)"> 
+							{{rating}}
+					</button>	 
+				</span>	
 		</div>
+		 
 
 		<div>
-			<button class="btn btn-inverse btn-lg btn-login" type="submit"> Comment</button>
+			<button ng-click="submitComment()" class="btn btn-inverse btn-lg btn-login" type="submit"> Comment</button>
+		</div>
 	</div>
-
-
-
 		
 	</div>
 </div>
