@@ -7,8 +7,4 @@ angular.module('notrApp')
         $scope.notes = notes;
         console.log(notes);
     });
-
-    $scope.openModal = function(){
-    	console.log("Here");
-    }
   }]);

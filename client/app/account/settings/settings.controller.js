@@ -8,7 +8,7 @@ angular.module('notrApp')
     $scope.user = User.get(function (result) {
       for (var i in result.boughtNotes) {
         for (var j in notes) {
-          if (result.boughtNotes[i] == notes[j].ref) {
+          if (result.boughtNotes[i] === notes[j].ref) {
             notes[j].date = new Date(notes[j].date).toDateString();
             $scope.reviews.push(notes[j]);
           }
@@ -46,4 +46,4 @@ $.fn.stars = function() {
         // Replace the numerical value with stars
         $(this).html($span);
     });
-}
+};

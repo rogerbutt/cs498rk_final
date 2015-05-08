@@ -17,7 +17,6 @@ angular.module('notrApp')
     $scope.submitComment = function() {
     	$scope.submittedComment = true;
 
-    	console.log("here");
         // console.log($routeParams);
         // console.log($scope.comment);
     	if (typeof $scope.comment !== 'undefined') {
@@ -29,7 +28,7 @@ angular.module('notrApp')
             console.log($scope.comment);
             
 
-            commentsService.postComment ($scope.comment, function (returnMessage ) {
+            commentsService.postComment ($scope.comment, function () {
                 commentsService.getComments({ id: $routeParams.id }, function (comments) {
                 $scope.comments = comments;
                 $scope.comment = null;
@@ -38,13 +37,11 @@ angular.module('notrApp')
     	}
 
 
-        console.log("not in the loop");
     };
 
     $scope.setRating = function (rating) {
         $scope.comment.rating = rating + 1;
-
-    }
+    };
 
   }]);
 
