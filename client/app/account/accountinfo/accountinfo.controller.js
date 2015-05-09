@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('AccountInfoCtrl', function ($scope) {
-    $scope.errors = {};
-
+  .controller('AccountInfoCtrl', function ($scope, User) {
+    $scope.user = User.get();
   });

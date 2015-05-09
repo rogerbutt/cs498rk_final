@@ -1,9 +1,17 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('LibraryCtrl', function ($scope) {
-    $scope.message = 'Hello';    
-    $scope.files = [{'name': 'Tesseract Debrief', 'summary': 'Debriefing the incident at the tesseract facility', 'date': 'Apr 11, 2012'}, 
-    				{'name': 'Debate 9', 'summary': 'Is Main Evil?', 'date': 'Mar 24, 2011'}];
-
+  .controller('LibraryCtrl', function ($scope, User, notesService) {
+  	$scope.boughtFiles = [];
+    var notes = notesService.getNotes();
+    User.get(function (result) {
+      for (var i in result.boughtNotes) {
+        for (var j in notes) {
+          if (result.boughtNotes[i] === notes[j].ref) {
+            notes[j].date = new Date(notes[j].date).toDateString();
+            $scope.boughtFiles.push(notes[j]);
+          }
+        }
+      }
+    });
   });

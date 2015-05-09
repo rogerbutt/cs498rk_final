@@ -4,14 +4,16 @@
 		<div class="col-sm-12">
 			<h3>Library</h3>
 		</div>
-		<table class="table table-striped">
-        	<tbody>
-        		<tr ng-repeat="file in files">
-		            <td><h6>{{file.name}}</h6></td>
-		            <td><h6 style="font-weight:normal;">{{file.summary}}</h6></td>
-		            <td><h6 style="font-weight:normal;">{{file.date}}</h6></td>
-		        </tr>
-        	</tbody>
-        </table>
+		<div class="col-sm-12">
+			<table class="table table-hover">
+	        	<tbody>
+	        		<tr ng-repeat="file in boughtFiles">
+			            <td><h6>{{file.name}}</h6></td>
+			            <td><h6 style="font-weight:normal;">{{file.description}}</h6></td>
+			            <td><h6 style="font-weight:normal;">{{file.date}}</h6></td>
+			        </tr>
+	        	</tbody>
+	        </table>
+    	</div>
 	</div>
 </div>
