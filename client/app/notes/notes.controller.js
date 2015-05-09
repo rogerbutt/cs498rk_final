@@ -5,7 +5,7 @@ angular.module('notrApp')
     notesService.getNote({ id: $routeParams.id }, function (note) {
     	$scope.note = note;
     	$scope.rating = note.ratingTotal / note.ratingNum;
-        $sce.trustAsResourceUrl(note.ref);
+        $scope.note.ref = $sce.trustAsResourceUrl(note.ref);
     	// $scope.comments = note.comments;
     });
     commentsService.getComments({ id: $routeParams.id }, function (comments) {
