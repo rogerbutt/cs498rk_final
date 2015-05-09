@@ -22,11 +22,9 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin',
-    credits: 5,
-    boughtNotes: ['425midtermI']
+    credits: 5
   }, function(err, test, admin) {
       console.log('finished populating users');
-
       Classes.find({}).remove(function() {
         Classes.create({
           name: 'Web Programming',
@@ -46,6 +44,11 @@ User.find({}).remove(function() {
               ratingNum: 10,
               ref: "https://s3-us-west-2.amazonaws.com/cs498rk-notr/cs498rknote.pdf"
             }, function(err, note) {
+
+              test.ownedNotes = test.ownedNotes || [];
+              test.ownedNotes.push(note._id);
+              test.save();
+
               Comment.find({}).remove(function() {
                 Comment.create({
                   user: test._id,
@@ -57,14 +60,11 @@ User.find({}).remove(function() {
                   note.comments.push(comment._id);
                   note.save();
                 });
-
               })
             });
           });
         });
-      });
 
-      Classes.find({}).remove(function() {
         Classes.create({
           name: 'Distributed Systems',
           college: 'University of Illinois',
@@ -82,9 +82,7 @@ User.find({}).remove(function() {
               ratingTotal: 50,
               ratingNum: 10,
               ref: "425hw3"
-            })
-          });
-          Note.find({}).remove(function() {
+            });
             Note.create({
               name: 'cs425 midterm I',
               owner: test._id,
@@ -95,12 +93,10 @@ User.find({}).remove(function() {
               ratingTotal: 50,
               ratingNum: 10,
               ref: "425midtermI"
-            })
+            });
           });
         });
       });
-
-
     }
   );
 });
