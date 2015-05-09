@@ -99,9 +99,7 @@ exports.purchase = function(req, res, next) {
   User.findById(userId, function (err, user) {
     Note.findById(noteId, function (err, note) {
 
-      if(!checkPurchased(noteId, user.ownedNotes)
-        && !checkPurchased(noteId, user.boughtNotes)
-        && user.credits >= note.price) {
+      if(!checkPurchased(noteId, user.ownedNotes) && !checkPurchased(noteId, user.boughtNotes) && user.credits >= note.price) {
 
         // Credit the owner
         if(note.owner !== 'notr') {

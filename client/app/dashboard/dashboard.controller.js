@@ -5,10 +5,5 @@ angular.module('notrApp')
     $scope.message = 'Hello';
     notesService.getNotes(function (notes) {
         $scope.notes = notes;
-        console.log(notes);
     });
-
-    $scope.openModal = function(){
-    	console.log("Here");
-    }
   }]);

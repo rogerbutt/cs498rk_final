@@ -82,7 +82,9 @@ User.find({}).remove(function() {
               ratingTotal: 50,
               ratingNum: 10,
               ref: "425hw3"
-            }),
+            })
+          });
+          Note.find({}).remove(function() {
             Note.create({
               name: 'cs425 midterm I',
               owner: test._id,

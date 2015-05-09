@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('UploadNoteCtrl', [ '$scope', 'Upload', function ($scope, Upload) {
+  .controller('UploadNoteCtrl', [ '$scope', 'Upload', function ($scope) {
 
   	$scope.$watch('files', function () {
         $scope.upload($scope.files);
@@ -10,7 +10,7 @@ angular.module('notrApp')
     $scope.upload = function (files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
-                var file = files[i];
+                //var file = files[i];
 
                 // File Upload for S3, but have to be careful
 
