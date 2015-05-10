@@ -28,3 +28,13 @@ $btnGithubBackgroundHighlight:      #ccc;
 .btn-github {
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
+
+.login{
+	overflow:auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 1;
+    background-attachment: fixed;
+    background-image: url("../assets/images/login.jpg");
+}

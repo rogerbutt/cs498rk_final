@@ -9,9 +9,9 @@
   <div class="results" ng-hide="!search">
       <ul>
           <li ng-repeat="note in notes | filter:search">
-            <a href="">
+            <a href="notes/{{note._id}}">
               <div class="result">
-                  <a href="notes/{{note._id}}"><div><h5>{{note.name}}</h5></div></a>
+                  <div><h5>{{note.name}}</h5></div>
               </div>
             </a><hr>
           </li>
