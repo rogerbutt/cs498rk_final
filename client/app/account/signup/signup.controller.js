@@ -16,7 +16,7 @@ angular.module('notrApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/search');
         })
         .catch( function(err) {
           err = err.data;

@@ -18,6 +18,12 @@ angular.module('notrApp')
           controller: 'credit'
         }
       },
+      deleteCard: {
+        method: 'PUT',
+        params: {
+          controller: 'deletecard'
+        }
+      },
       get: {
         method: 'GET',
         params: {

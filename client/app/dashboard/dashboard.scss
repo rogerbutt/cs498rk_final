@@ -1,12 +1,37 @@
 .dashboard-container{
 	width:80%;
 	margin:0 auto;
+	margin-top:30px;
+	color:#ababab;
 }
 
-.notes-feed{
-	
+#sorting a {
+	text-decoration: none;
+	color:#ababab;
 }
 
+#sorting a :hover {
+	color:orange;
+}
+
+#notes-feed-div{
+
+	a {
+		color:#ababab;
+	}
+
+	a:hover{
+		color:orange;
+	}
+
+	a:active{
+		color:orange;
+	}
+}
+
+.notes-feed-head, .dash-library-head{
+	color:#707070;
+}
 .row .head{
 	display:table;
 }

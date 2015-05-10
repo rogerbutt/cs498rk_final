@@ -5,6 +5,7 @@ angular.module('notrApp')
     $routeProvider
       .when('/uploadNote', {
         templateUrl: 'app/uploadNote/uploadNote.html',
-        controller: 'UploadNoteCtrl'
+        controller: 'UploadNoteCtrl',
+        authenticate: true
       });
   });

@@ -3,26 +3,23 @@
 	<div class="dashboard-container">
 		<div class="row head">
 			<div class="col-md-2 same-height">
-				<h3>Notes Feed</h1>
+				<span class="notes-feed-head"><h3>Notes Feed</h1></span>
 			</div>
-			<div class="col-md-2 same-height">
-				<span ng-click='sort="date"'>newest</span>
-				<span style="margin-left:20px"ng-click='sort="-rating"'>rating</span>
+			<div class="col-md-2 same-height" id="sorting">
+				<a href="" ng-click='sort="date"'><span>newest</span></a>
+				<a href="" ng-click='sort="-rating"'><span style="margin-left:20px">rating</span></a>
 			</div>
 			<div class="col-md-8 same-height new-note-button">
 				<a href="/uploadNote" type="button" class="btn btn-primary">Add Notes</a>	
 			</div>
 		</div>		
 		
-		<div ng-repeat="note in notes | orderBy:sort">	
-			<a href="/notes/{{note._id}}"><div class="row dash-notes">
-	  			<div class="col-md-3">+ {{note.name}}</div>
-	  			<div class="col-md-3">{{note.description}}</div>
-	  			<div class="col-md-3">{{note.date}}</div>
+		<div id="notes-feed-div"ng-repeat="note in notes | orderBy:sort">	
+			<div class="row dash-notes">
+	  			<a href="/notes/{{note._id}}"><div class="col-md-3">+ {{note.name}}</div></a>
+	  			<div class="col-md-4">{{note.description}}</div>
+	  			<div ng-bind="dateFormat(note.date)" class="col-md-2"></div>
 	  			<div class="col-md-3">
-					<!-- <div class="rating">
-						<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-					</div> -->
 					{{note.ratingTotal/note.ratingNum}}
 	  			</div>
 			</div></a>
@@ -30,15 +27,15 @@
 
 		<div class="row head">
 			<div class="col-md-2 same-height">
-				<h3>Library</h1>
+				<span class="dash-library-head"><h3>Library</h1></span>
 			</div>
 		</div>
 
 		<div ng-repeat="note in notes | orderBy:sort">	
 			<div class="row dash-notes">
 	  			<div class="col-md-3">+ {{note.name}}</div>
-	  			<div class="col-md-3">{{note.description}}</div>
-	  			<div class="col-md-6" style="text-align:right;">{{note.date}}</div>
+	  			<div class="col-md-4">{{note.description}}</div>
+	  			<div ng-bind="dateFormat(note.date)"class="col-md-5"></div>
 			</div>
 		</div>
 </div>

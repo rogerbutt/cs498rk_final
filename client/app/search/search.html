@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="search-container" ng-controller="SearchCtrl">
   <div style="text-align: center">
-    <span class="notr"><strong>notr.io</strong></span>
+    <span class="notr">notr.io</span>
   </div> 
   <div class="notes-search">
     <input type="text" ng-model="search" class="search" placeholder="Search for notes...">
@@ -9,9 +9,9 @@
   <div class="results" ng-hide="!search">
       <ul>
           <li ng-repeat="note in notes | filter:search">
-            <a href="">
+            <a href="notes/{{note._id}}">
               <div class="result">
-                  <a href="notes/{{note._id}}"><div><h5>{{note.name}}</h5></div></a>
+                  <div><h5>{{note.name}}</h5></div>
               </div>
             </a><hr>
           </li>

@@ -1,20 +1,50 @@
 <div ng-controller="UploadNoteCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
 	<div class="upload-note-container">
+		
 		<div ngf-drop ng-model="files" class="drop-box" 
 	        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
 	        ngf-accept="'.jpg,.png,.pdf'">PDF file here</div>
 	    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-	    
-	    File Preview: <iframe width="100%" height="600" ngf-src="files[0]"></iframe>
-
-	    <form ng-model="note">
-	    	Name: <input type="text" name="name" placeholder="Name" />
-	    	<br />
-	    	Description: <input type="text" name="description" placeholder="Description" />
-	    	<br />
-	    	Price: <input type="number" name="price" placeholder="price" />
-	    	<button class="btn btn-primary" ng-click="upload()">Upload</button>
-	    </form>
+	    <div class="row">
+		    <div class="col-md-6">
+		    	<iframe width="100%" height="450" ngf-src="files[0]"></iframe>
+			</div>
+			<div class="col-md-6">
+			    <!-- <form ng-model="note">
+			    	Name: <input type="text" name="name" placeholder="Name" />
+			    	<br />
+			    	Description: <input type="text" name="description" placeholder="Description" />
+			    	<br />
+			    	Price: <input type="number" name="price" placeholder="price" />
+			    	<button class="btn btn-primary" ng-click="upload()">Upload</button>
+			    </form> -->
+			    <form class="form-horizontal">
+				  <div class="form-group">
+				    <label for="noteName" class="col-sm-2 control-label">Name</label>
+				    <div class="col-sm-10">
+				      <input ng-model="name" type="text" class="form-control" id="note-name" placeholder="Enter Note Name">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="noteDesceiption" class="col-sm-2 control-label">Describe</label>
+				    <div class="col-sm-10">
+				      <input ng-model="description" type="text" class="form-control" id="note-description" placeholder="Describe your note in a sentence">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="notePrice" class="col-sm-2 control-label">Price</label>
+				    <div class="col-sm-10">
+				      <input ng-model="price" type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-min" id="note-price" placeholder="$0.99 for example" min="0" ng-model="additionalCredits">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button ng-click="upload()" type="submit" class="btn btn-primary">Add to Notr</button>
+				    </div>
+				  </div>
+				</form>
+		    </div>
+	    </div>
     </div>
 </div>
