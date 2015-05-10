@@ -141,6 +141,21 @@ exports.credit = function(req, res, next) {
 };
 
 /**
+ * Deletes the credit card on the account
+ */
+exports.deleteCard = function(req, res, next) {
+  var userId = req.user._id;
+
+  User.findById(userId, function (err, user) {
+    user.paymentInfo = "";
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+}
+
+/**
  * Get my info
  */
 exports.me = function(req, res, next) {
