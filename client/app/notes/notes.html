@@ -1,3 +1,10 @@
+<html>
+<head>
+	<link rel="stylesheet" href="notes.css">
+	<link rel="stylesheet" href="app.css">
+</head>
+
+<body>
 <div ng-controller="NotesCtrl"> 
 	<div ng-include="'components/navbar/navbar.html'"></div>
 
@@ -11,27 +18,63 @@
 		<h3>Comments: </h3>
 	</div>
 
+	<div class="row dash-comments">
+			<div class="col-md-3">
+			<center>
+				<table style="border-spacing:100000px; border-collapse:separate;">
+  					<colgroup>
+    					<col width="100" span="2">
+    					<col width="100">
+  					</colgroup>
+  					<tr>
+					    <th>Comment</th>
+					    <th> </th>
+					    <th>Rating</th>
+  					</tr>
+				</table>
+			</center>
+			</div>
+		</div>
 	<div ng-repeat='comment in comments'>
 		<div class="row dash-comments">
-			<div class="col-md-3"> {{comment.body}} {{comment.rating}}</div>
+			<div class="col-md-3">
+			<center>
+				<table style="border-spacing:100000px; border-collapse:separate;">
+  					<colgroup>
+    					<col width="100" span="2">
+    					<col width="100">
+  					</colgroup>
+  					<tr></tr>
+  					<div> 
+  					<tr>
+					    <td style="padding-bottom:10px;">{{comment.body}}</td>
+					    <td>       </td>
+					    <td style="padding-bottom:10px;"><div style="display:inline;" ng-repeat="i in getNumber(comment.rating) track by $index">
+							<div style="display:inline;" class="rating2">
+								<span>☆</span>		
+							</div>
+				</div></td>
+  					</tr>
+				</table>
+			</center>
+			</div>
 		</div>
 	</div>
 	
 	<div class="col-sm-12">
-		<div class="col-md-8 same-height new-comment-button">
+		<div style="padding:50px" class="col-md-8 same-height new-comment-button">
 			<input type="comment" ng-model="comment.body" class="comment-box" placeholder="Enter Comment" required>
-				<span ng-repeat="rating in ratings">
-					<button ng-click="setRating($index)"> 
-							{{rating}}
-					</button>	 
-				</span>	
+					<div style="display:inline;" class="rating" >
+							<span ng-repeat="rating in ratings" ng-click="setRating($index)">☆</span>		
+						
+					</div>
+			<div>
+				<button ng-click="submitComment()" class="btn btn-inverse btn-md" type="submit"> Comment</button>
+			</div>
 		</div>
-		 
+	</div>
 
-		<div>
-			<button ng-click="submitComment()" class="btn btn-inverse btn-lg btn-login" type="submit"> Comment</button>
-		</div>
-	</div>
-		
-	</div>
 </div>
+
+</body>
+</html>

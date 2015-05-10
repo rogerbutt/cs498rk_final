@@ -5,10 +5,16 @@ var mongoose = require('mongoose'),
 
 var CommentSchema = new Schema({
   user: String,
-  rating: Number,
+  rating: {type: Number, default: 1} ,
   // note: String,
   body: String,
   noteRef: String
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);
+
+
+
+
+
+

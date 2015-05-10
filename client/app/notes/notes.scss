@@ -1,0 +1,35 @@
+.rating {
+  text-align: center;
+}
+
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+
+.rating:hover > span {
+	color: transparent;
+}
+
+.rating > span:hover ~ span {
+	color: black;
+}
+
+.rating:hover > span:before {
+	content: "\2605";
+	position: absolute;
+	left: 0; 
+	color: #DAA520;
+}
+
+.rating > span:hover ~ span:before {
+	color: transparent;
+}
+
+.rating:active {
+    color: blue;
+}
+.rating2 {
+	color: #DAA520;
+}
