@@ -16,10 +16,10 @@ var createS3Policy = function(contentType, callback) {
     var s3Policy = {
         'expiration': getExpiryTime(),
         'conditions': [
-            ['starts-with', '$key', 's3UploadExample/'],
+            ['starts-with', '$key', ''],
             {'bucket': config.bucket},
-            {'acl': 'public-read'},
-            ['starts-with', '$Content-Type', contentType],
+            {'acl': 'private'},
+            ['starts-with', '$Content-Type', ''],
             {'success_action_status' : '201'}
         ]
     };

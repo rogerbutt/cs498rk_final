@@ -1,6 +1,6 @@
 {
-  "accessKeyId": "AKIAJSFH4D3BZWKXV3LA",
-  "secretAccessKey": "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",
-  "region" : "oregon",
+  "accessKeyId": "AKIAIWSSJXXUTCOQXDMQ",
+  "secretAccessKey": "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",
+  "region" : "us-west-2",
   "bucket": "cs498rk-notr"
 }
