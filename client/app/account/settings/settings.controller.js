@@ -3,17 +3,8 @@
 angular.module('notrApp')
   .controller('SettingsCtrl', function ($scope, User, Auth, notesService) {
     $scope.errors = {}; 
-    $scope.reviews = [];
-    var notes = notesService.getNotes();
     $scope.user = User.get(function (result) {
-      for (var i in result.boughtNotes) {
-        for (var j in notes) {
-          if (result.boughtNotes[i] === notes[j].ref) {
-            notes[j].date = new Date(notes[j].date).toDateString();
-            $scope.reviews.push(notes[j]);
-          }
-        }
-      }
+      $scope.reviews = result.boughtNotes;
       return result;
     });
 

@@ -12,6 +12,12 @@ angular.module('notrApp')
           controller:'password'
         }
       },
+      addCredit: {
+        method: 'PUT',
+        params: {
+          controller: 'credit'
+        }
+      },
       get: {
         method: 'GET',
         params: {

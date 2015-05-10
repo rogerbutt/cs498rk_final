@@ -14,7 +14,11 @@
 		<div class="col-sm-8">
 			<h4>{{user.name}}</h4>
 			<p>Your current balance is ${{user.credits}}.</p>
-			<a class="btn btn-default" href="#" role="button">Add Credit</a>
+			<form class="form-inline" ng-submit="credit(form)">
+				<label for="creditInput">Credits</label>
+				<input type="number" class="form-control" id="creditInput" placeholder="1" min="0" ng-model="additionalCredits"></input>
+				<button type="submit" class="btn btn-default">Add Credits</button>
+			</form>
 		</div>
 	</div>
 	<br />

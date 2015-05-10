@@ -131,7 +131,8 @@ exports.credit = function(req, res, next) {
   var credits = parseInt(req.body.credits);
 
   User.findById(userId, function (err, user) {
-    user.credits += credits;
+    // added on the front end
+    user.credits = credits;
     user.save(function(err) {
       if (err) return validationError(res, err);
       res.send(200);

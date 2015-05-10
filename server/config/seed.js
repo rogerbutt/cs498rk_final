@@ -22,9 +22,8 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin',
-    credits: 5
+    credits: 1
   }, function(err, test, admin) {
-      console.log('finished populating users');
       Classes.find({}).remove(function() {
         Classes.create({
           name: 'Web Programming',
