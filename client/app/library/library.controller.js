@@ -3,7 +3,6 @@
 angular.module('notrApp')
   .controller('LibraryCtrl', function ($scope, User) {
   	$scope.user = User.get();
-    console.log($scope.user);
 
     $scope.dateFormat = function(date){
         var monthNames = [

@@ -160,7 +160,7 @@ exports.deleteCard = function(req, res, next) {
  */
 exports.editCard = function(req, res, next) {
   var userId = req.user._id;
-  var paymentInfo = req.body.paymentInfo;
+  var paymentInfo = req.body.payment;
 
   User.findById(userId, function (err, user) {
     user.paymentInfo = paymentInfo;

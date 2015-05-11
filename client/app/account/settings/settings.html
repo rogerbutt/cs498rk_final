@@ -25,16 +25,12 @@
             <td><h6>{{notes.name}}</h6></td>
             <td><h6 style="font-weight:normal;">{{notes.description}}</h6></td>
             <td><h6 style="font-weight:normal;" ng-bind="dateFormat(notes.date)"></h6></td>
-            <td><span class="stars">{{notes.rating}}</span></td>
+            <td><div style="display:inline;">
+              <span ng-repeat="i in getNumber(5) track by $index" ng-class="{'rating2':$index < notes.ratingTotal/notes.ratingNum}">☆</span>    
+        </div></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('.stars').stars();
-  });
-</script>

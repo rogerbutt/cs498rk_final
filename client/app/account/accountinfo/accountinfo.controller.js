@@ -44,7 +44,7 @@ angular.module('notrApp')
   	$scope.deleteCard = function() {
       $scope.user.paymentInfo = "";
       $scope.button = 'disabled';
-  		User.deleteCard({id:$scope.user._id}, $scope.user);
+  		User.deleteCard({id:$scope.user._id}, {paymentInfo:""});
   	}
   }]);
 
@@ -70,7 +70,7 @@ angular.module('notrApp')
     $scope.save = function () {
       $scope.user.paymentInfo = $scope.nickname + "," + $scope.cardnumber + "," + $scope.expiration;
       $scope.payment = $scope.user.paymentInfo;
-      User.editCard({id:$scope.user._id}, $scope.user);
+      User.editCard({id:$scope.user._id}, {payment:$scope.payment});
       $route.reload();
       $modalInstance.close();
     };
