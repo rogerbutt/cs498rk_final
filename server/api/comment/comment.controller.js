@@ -28,8 +28,20 @@ exports.create = function(req, res) {
 
   Note.findById(data.noteRef, function (err, note) {
     if(err) { return handleError(res, err); }
-    note.ratingTotal += data.rating;
-    note.ratingNum += 1;
+    note.ratingTotal = note.ratingTotal || 0;
+    note.ratingNum = note.ratingNum || 0;
+    if(note.ratingTotal === NaN) {
+      note.ratingTotal = 0;
+    }
+    if(note.ratingNum === NaN) {
+      note.ratingNum = 0;
+    }
+    console.log(data);
+    if(data.rating !== undefined) {
+      note.ratingTotal += parseInt(data.rating);
+      note.ratingNum += 1;
+    }
+
 
     if(data.body.length <= 0) {
       note.save();

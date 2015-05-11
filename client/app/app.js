@@ -31,7 +31,6 @@ angular.module('notrApp', [
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
 
-        console.log(config.url === 'https://cs498rk-notr.s3.amazonaws.com/');
         if(config.url === 'https://cs498rk-notr.s3.amazonaws.com/') {
           delete config.headers['Authorization'];
         }

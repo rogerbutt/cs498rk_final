@@ -2,51 +2,60 @@
 
 angular.module('notrApp')
   .controller('NotesCtrl', [ 'User', '$scope', 'notesService', '$routeParams', 'commentsService', '$sce', function (User, $scope, notesService, $routeParams, commentsService, $sce) {
+    
+    $scope.comment = {};
+
     notesService.getNote({ id: $routeParams.id }, function (note) {
     	$scope.note = note;
     	$scope.rating = note.ratingTotal / note.ratingNum;
         $scope.note.ref = $sce.trustAsResourceUrl(note.ref);
-    	// $scope.comments = note.comments;
     });
+
     commentsService.getComments({ id: $routeParams.id }, function (comments) {
     	$scope.comments = comments;
     });
     
     $scope.ratings = [1, 2, 3, 4, 5];
-    var currentUser = User.get();
+    
     $scope.submitComment = function() {
     	$scope.submittedComment = true;
 
-    	if (typeof $scope.comment !== 'undefined') {
-    		$scope.comment.user = currentUser._id;    		
+        User.get(function(user) {
+            if($scope.comment.body === undefined)
+                return;
+
+            $scope.comment.user = user._id;          
             $scope.comment.noteRef = $scope.note._id;
-            console.log($scope.comment);
 
             commentsService.postComment ($scope.comment, function () {
                 commentsService.getComments({ id: $routeParams.id }, function (comments) {
                     $scope.comments = comments;
-                    $scope.comment = null;
+                    $scope.comment = {};
                 });
-            });  
-    	}
+            });
+        });
     };
 
     $scope.setRating = function (rating) {
-        if (typeof $scope.comment !== 'undefined' && typeof $scope.comment !== null) {
-            $scope.comment.rating = rating + 1;
-        }   
+        $scope.comment.rating = rating + 1;  
+        console.log($scope.comment);
+        // document.getElementById("starImage").style.color = "blue";
     };
 
     $scope.getNumber = function(num) {
-        // console.log(num);
         return new Array(num);   
     };
 
+    // $scope.changeColor = function () {
+    //     $document.getElementById("startImage").style.color = "black";
+    // }   
 
 
-    $scope.setRating = function (rating) {
-        $scope.comment.rating = rating + 1;
-    };
+
+
+    // $scope.setRating = function (rating) {
+    //     $scope.comment.rating = rating + 1;
+    // };
 
   }]);
 
