@@ -37,7 +37,7 @@ angular.module('notrApp')
         $scope.button = '';
         $scope.user.credits = $scope.user.credits + $scope.additionalCredits;
         $scope.additionalCredits = 0;
-        User.addCredit({id:$scope.user._id}, $scope.user);
+        User.addCredit({id:$scope.user._id}, {credits:$scope.additionalCredits});
       }
 	  };  
 
