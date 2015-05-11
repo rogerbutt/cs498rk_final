@@ -3,7 +3,9 @@
 angular.module('notrApp')
   .controller('NotesCtrl', [ 'User', '$scope', 'notesService', '$routeParams', 'commentsService', '$sce', function (User, $scope, notesService, $routeParams, commentsService, $sce) {
     
-    $scope.comment = {};
+    $scope.comment = {
+        rating: 0
+    };
 
     notesService.getNote({ id: $routeParams.id }, function (note) {
     	$scope.note = note;
@@ -31,31 +33,40 @@ angular.module('notrApp')
                 commentsService.getComments({ id: $routeParams.id }, function (comments) {
                     $scope.comments = comments;
                     $scope.comment = {};
+                    $scope.selectedRating = 0;
                 });
             });
         });
     };
-
+    $scope.selectedRating = 0;
     $scope.setRating = function (rating) {
+        $scope.selectedRating = rating + 1;
         $scope.comment.rating = rating + 1;  
         console.log($scope.comment);
-        // document.getElementById("starImage").style.color = "blue";
+        //document.getElementById("starImage").style.color = "yellow";
     };
 
     $scope.getNumber = function(num) {
         return new Array(num);   
     };
 
-    // $scope.changeColor = function () {
-    //     $document.getElementById("startImage").style.color = "black";
-    // }   
+    $scope.dateFormat = function(date){
+            console.log("getting date");
+            var monthNames = [
+                "Jan", "Feb", "Mar",
+                "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct",
+                "Nov", "Dec"
+            ];
+            var ret = "";
+            var date = new Date(date);
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
 
-
-
-
-    // $scope.setRating = function (rating) {
-    //     $scope.comment.rating = rating + 1;
-    // };
+            ret+= monthNames[monthIndex]+" "+day+", " + year;
+            return ret;
+        }
 
   }]);
 
