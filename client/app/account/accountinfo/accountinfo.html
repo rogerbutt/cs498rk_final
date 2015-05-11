@@ -15,9 +15,9 @@
 			<h4>{{user.name}}</h4>
 			<p>Your current balance is ${{user.credits}}.</p>
 			<form class="form-inline" ng-submit="credit()">
-				<label for="creditInput">Credits</label>
+				<label for="creditInput" style="color:#707070;">Credits</label>
 				<input type="number" class="form-control" id="creditInput" placeholder="1" min="0" ng-model="additionalCredits"></input>
-				<button type="submit" class="btn btn-default">Add Credits</button>
+				<button type="submit" class="btn btn-default {{button}}">Add Credits</button>
 			</form>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 		        <tbody>
 		          <tr>
 		            <td><h6 data-ng-model="user">{{nickname}}</h6></td>
-		            <td><h6 style="font-weight:normal;"> Expires: {{expiration}}</h6></td>
+		            <td><h6 style="font-weight:normal;">{{expiration}}</h6></td>
 		            <td>
 		            	<script type="text/ng-template" id="creditCard.html">
 		            		<div class="modal-header">

@@ -1,19 +1,32 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="library-container">
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-sm-12">
-			<h3>Library</h3>
+		<h3>Library</h3>
 		</div>
 		<div class="col-sm-12">
 			<table class="table table-hover">
 	        	<tbody>
-	        		<tr ng-repeat="file in boughtFiles">
+	        		<tr ng-repeat="file in user.boughtNotes">
 			            <td><h6>{{file.name}}</h6></td>
 			            <td><h6 style="font-weight:normal;">{{file.description}}</h6></td>
-			            <td><h6 style="font-weight:normal;">{{file.date}}</h6></td>
+			            <td><h6 style="font-weight:normal;" ng-bind="dateFormat(file.date)"></h6></td>
 			        </tr>
 	        	</tbody>
 	        </table>
     	</div>
-	</div>
+	</div> -->
+	<div class="row head">
+			<div class="col-md-2 same-height">
+				<h3>Library</h3>
+			</div>
+		</div>
+
+		<div ng-repeat="note in notes | orderBy:sort">	
+			<div class="row dash-notes">
+	  			<div class="col-md-3">+ {{note.name}}</div>
+	  			<div class="col-md-4">{{note.description}}</div>
+	  			<div ng-bind="dateFormat(note.date)"class="col-md-5"></div>
+			</div>
+		</div>
 </div>

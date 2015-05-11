@@ -8,6 +8,22 @@ angular.module('notrApp')
       return result;
     });
 
+     $scope.dateFormat = function(date){
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+        ];
+        var ret = "";
+        var date = new Date(date);
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        ret+= monthNames[monthIndex]+" "+day+", " + year;
+        return ret;
+      }
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;

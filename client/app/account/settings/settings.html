@@ -7,26 +7,24 @@
       <img src="./assets/images/sample.png" alt="profile picture" />
     </div>
     <div class="col-sm-12" style="padding-bottom:15px;">
-      <h3>{{user.name}}</h3>
+      <h4>{{user.name}}</h4>
     </div>
-    <div class="col-sm-6">
-      <button class="btn btn-default" style="float:right;">Balance (${{user.credits}})</button>
-    </div>
-    <div class="col-sm-6">
-      <a class="btn btn-default" href="/accountinfo" role="button" style="float:left;">Edit Account Info</a>
+    <div class="col-sm-12">
+      <button class="btn btn-default" style="float:center;">Balance (${{user.credits}})</button>
+      <a class="btn btn-default" href="/accountinfo" role="button" style="float:center;">Edit Account Info</a>
     </div>
   </div>
   <br />
   <div class="row">
     <div class="col-sm-12">
-      <h3>Recently Reviewed</h3>
+      <h4>Recently Reviewed</h4>
       <!-- TODO: Create sort by ratings and date-->
       <table class="table table-hover">
         <tbody>
           <tr ng-repeat="notes in reviews">
             <td><h6>{{notes.name}}</h6></td>
             <td><h6 style="font-weight:normal;">{{notes.description}}</h6></td>
-            <td><h6 style="font-weight:normal;">{{notes.date}}</h6></td>
+            <td><h6 style="font-weight:normal;" ng-bind="dateFormat(notes.date)"></h6></td>
             <td><span class="stars">{{notes.rating}}</span></td>
           </tr>
         </tbody>
