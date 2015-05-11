@@ -14,6 +14,7 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id/purchase', auth.isAuthenticated(), controller.purchase);
 router.put('/:id/credit', auth.isAuthenticated(), controller.credit);
 router.put('/:id/deletecard', auth.isAuthenticated(), controller.deleteCard);
+router.put('/:id/editcard', auth.isAuthenticated(), controller.editCard);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 

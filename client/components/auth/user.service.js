@@ -24,6 +24,12 @@ angular.module('notrApp')
           controller: 'deletecard'
         }
       },
+      editCard: {
+        method: 'PUT',
+        params: {
+          controller: 'editcard'
+        }
+      },
       get: {
         method: 'GET',
         params: {

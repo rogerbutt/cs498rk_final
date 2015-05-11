@@ -131,7 +131,6 @@ exports.credit = function(req, res, next) {
   var credits = parseInt(req.body.credits);
 
   User.findById(userId, function (err, user) {
-    // added on the front end
     user.credits = credits;
     user.save(function(err) {
       if (err) return validationError(res, err);
@@ -148,6 +147,22 @@ exports.deleteCard = function(req, res, next) {
 
   User.findById(userId, function (err, user) {
     user.paymentInfo = "";
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+}
+
+/**
+ * Edits the credit card on the account
+ */
+exports.editCard = function(req, res, next) {
+  var userId = req.user._id;
+  var paymentInfo = req.body.paymentInfo;
+
+  User.findById(userId, function (err, user) {
+    user.paymentInfo = paymentInfo;
     user.save(function(err) {
       if (err) return validationError(res, err);
       res.send(200);

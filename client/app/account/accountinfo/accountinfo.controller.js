@@ -1,21 +1,32 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('AccountInfoCtrl', function ($scope, $modal, User) {
+  .controller('AccountInfoCtrl', ['$scope', '$modal', 'User', function ($scope, $modal, User) {
     $scope.user = User.get();
-    $scope.creditCard = $scope.user.paymentInfo;
-    $scope.additionalCredits;
-    if ($scope.user.paymentInfo === "" || $scope.user.paymentInfo == null) {
-      $scope.cardMessage = "Add Card";
-    } else {
-      $scope.cardMessage = "Edit Card";
-    }
+    $scope.additionalCredits = 0;
+  
+    $scope.$watch('user', function() {
+      $scope.payment = $scope.user.paymentInfo;
+      if ($scope.payment == "" || $scope.payment === undefined){
+        $scope.nickname = "";
+        $scope.cardnumber = "";
+        $scope.expiration = "";
+        $scope.cardMessage = "Add Card";
+      } else {
+        var creditInfo = $scope.payment.split(',');
+        $scope.nickname = creditInfo[0];
+        $scope.cardnumber = parseInt(creditInfo[1]);
+        $scope.expiration = parseInt(creditInfo[2]);
+        $scope.cardMessage = "Edit Card";
+      } 
+    }, true);
+
 
     $scope.open = function () {
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'creditCard.html',
-        controller: 'modalCtrl',
+        controller: 'modalCtrl' 
       });
     }
 
@@ -29,14 +40,36 @@ angular.module('notrApp')
       $scope.user.paymentInfo = "";
   		User.deleteCard({id:$scope.user._id}, $scope.user);
   	}
-  });
+  }]);
 
-angular.module('notrApp').controller('modalCtrl', function($scope, $modalInstance) {
-  $scope.save = function () {
-    $modalInstance.close();
-  };
+angular.module('notrApp')
+  .controller('modalCtrl', ['$scope', '$modalInstance', '$route', 'User', function($scope, $modalInstance, $route, User) {
+    $scope.user = User.get();
+    $scope.payment = $scope.user.paymentInfo;
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss();
-  };
-});
+    $scope.$watch('user', function() {
+      $scope.payment = $scope.user.paymentInfo;
+      if ($scope.payment === "" || $scope.payment == null) {
+        $scope.nickname = "";
+        $scope.cardnumber = "";
+        $scope.expiration = "";
+      } else {
+        var creditInfo = $scope.payment.split(',');
+        $scope.nickname = creditInfo[0];
+        $scope.cardnumber = parseInt(creditInfo[1]);
+        $scope.expiration = parseInt(creditInfo[2]);
+      }
+    }, true);
+
+    $scope.save = function () {
+      $scope.user.paymentInfo = $scope.nickname + "," + $scope.cardnumber + "," + $scope.expiration;
+      $scope.payment = $scope.user.paymentInfo;
+      User.editCard({id:$scope.user._id}, $scope.user);
+      $route.reload();
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss();
+    };
+  }]);
