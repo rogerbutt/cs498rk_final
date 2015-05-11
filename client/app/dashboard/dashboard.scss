@@ -5,12 +5,28 @@
 	color:#ababab;
 }
 
-.dashboard-container a{
+#sorting a {
 	text-decoration: none;
+	color:#ababab;
 }
 
-.af{
-	text-decoration: none;
+#sorting a :hover {
+	color:orange;
+}
+
+#notes-feed-div{
+
+	a {
+		color:#ababab;
+	}
+
+	a:hover{
+		color:orange;
+	}
+
+	a:active{
+		color:orange;
+	}
 }
 
 .notes-feed-head, .dash-library-head{

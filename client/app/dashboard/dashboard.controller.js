@@ -14,10 +14,10 @@ angular.module('notrApp')
         $scope.dateFormat = function(date){
 	    	console.log("getting date");
 	    	var monthNames = [
-		        "January", "February", "March",
-		        "April", "May", "June", "July",
-		        "August", "September", "October",
-		        "November", "December"
+		        "Jan", "Feb", "Mar",
+		        "Apr", "May", "Jun", "Jul",
+		        "Aug", "Sep", "Oct",
+		        "Nov", "Dec"
 		    ];
 		    var ret = "";
 		    var date = new Date(date);

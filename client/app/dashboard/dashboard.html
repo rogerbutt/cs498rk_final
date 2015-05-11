@@ -5,20 +5,20 @@
 			<div class="col-md-2 same-height">
 				<span class="notes-feed-head"><h3>Notes Feed</h1></span>
 			</div>
-			<div class="col-md-2 same-height">
-				<a href="" class="af" ng-click='sort="date"'><span>newest</span></a>
-				<a href="" class="af"ng-click='sort="-rating"'><span style="margin-left:20px">rating</span></a>
+			<div class="col-md-2 same-height" id="sorting">
+				<a href="" ng-click='sort="date"'><span>newest</span></a>
+				<a href="" ng-click='sort="-rating"'><span style="margin-left:20px">rating</span></a>
 			</div>
 			<div class="col-md-8 same-height new-note-button">
 				<a href="/uploadNote" type="button" class="btn btn-primary">Add Notes</a>	
 			</div>
 		</div>		
 		
-		<div ng-repeat="note in notes | orderBy:sort">	
+		<div id="notes-feed-div"ng-repeat="note in notes | orderBy:sort">	
 			<div class="row dash-notes">
 	  			<a href="/notes/{{note._id}}"><div class="col-md-3">+ {{note.name}}</div></a>
-	  			<div class="col-md-3">{{note.description}}</div>
-	  			<div ng-bind="dateFormat(note.date)" class="col-md-3"></div>
+	  			<div class="col-md-4">{{note.description}}</div>
+	  			<div ng-bind="dateFormat(note.date)" class="col-md-2"></div>
 	  			<div class="col-md-3">
 					{{note.ratingTotal/note.ratingNum}}
 	  			</div>
@@ -34,8 +34,8 @@
 		<div ng-repeat="note in notes | orderBy:sort">	
 			<div class="row dash-notes">
 	  			<div class="col-md-3">+ {{note.name}}</div>
-	  			<div class="col-md-3">{{note.description}}</div>
-	  			<div ng-bind="dateFormat(note.date)"class="col-md-6"></div>
+	  			<div class="col-md-4">{{note.description}}</div>
+	  			<div ng-bind="dateFormat(note.date)"class="col-md-5"></div>
 			</div>
 		</div>
 </div>
