@@ -4,20 +4,20 @@ angular.module('notrApp')
   .controller('AccountInfoCtrl', ['$scope', '$modal', 'User', function ($scope, $modal, User) {
     $scope.user = User.get();
     $scope.additionalCredits = 0;
+    $scope.button = 'disabled';
   
     $scope.$watch('user', function() {
       $scope.payment = $scope.user.paymentInfo;
       if ($scope.payment == "" || $scope.payment === undefined){
         $scope.nickname = "";
-        $scope.cardnumber = "";
         $scope.expiration = "";
         $scope.cardMessage = "Add Card";
       } else {
         var creditInfo = $scope.payment.split(',');
         $scope.nickname = creditInfo[0];
-        $scope.cardnumber = parseInt(creditInfo[1]);
-        $scope.expiration = parseInt(creditInfo[2]);
+        $scope.expiration = "Expires: " + creditInfo[2];
         $scope.cardMessage = "Edit Card";
+        $scope.button = '';
       } 
     }, true);
 
@@ -31,13 +31,19 @@ angular.module('notrApp')
     }
 
     $scope.credit = function() {
-      $scope.user.credits = $scope.user.credits + $scope.additionalCredits;
-      $scope.additionalCredits = 0;
-      User.addCredit({id:$scope.user._id}, $scope.user);
+      if ($scope.payment == "" || $scope.payment === undefined) {
+        $scope.button = 'disabled';
+      } else {
+        $scope.button = '';
+        $scope.user.credits = $scope.user.credits + $scope.additionalCredits;
+        $scope.additionalCredits = 0;
+        User.addCredit({id:$scope.user._id}, $scope.user);
+      }
 	  };  
 
   	$scope.deleteCard = function() {
       $scope.user.paymentInfo = "";
+      $scope.button = 'disabled';
   		User.deleteCard({id:$scope.user._id}, $scope.user);
   	}
   }]);

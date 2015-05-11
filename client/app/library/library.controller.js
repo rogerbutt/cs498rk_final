@@ -1,17 +1,24 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('LibraryCtrl', function ($scope, User, notesService) {
-  	$scope.boughtFiles = [];
-    var notes = notesService.getNotes();
-    User.get(function (result) {
-      for (var i in result.boughtNotes) {
-        for (var j in notes) {
-          if (result.boughtNotes[i] === notes[j].ref) {
-            notes[j].date = new Date(notes[j].date).toDateString();
-            $scope.boughtFiles.push(notes[j]);
-          }
-        }
+  .controller('LibraryCtrl', function ($scope, User) {
+  	$scope.user = User.get();
+
+    $scope.dateFormat = function(date){
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+        ];
+        var ret = "";
+        var date = new Date(date);
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        ret+= monthNames[monthIndex]+" "+day+", " + year;
+        return ret;
       }
-    });
+
   });

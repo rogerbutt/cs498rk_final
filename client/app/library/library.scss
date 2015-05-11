@@ -1,5 +1,22 @@
+h3 {
+	color: #707070;	
+}
+
 .library-container {
 	width: 80%;
 	margin: 0 auto;
 	margin-top:30px;
+}
+
+.row .head{
+	display:table;
+}
+
+.same-height{
+	float:none;
+	display:table-cell;
+}
+
+.dash-notes{
+	margin-top:15px;
 }
