@@ -12,14 +12,14 @@
 
 	<div class="col-md-12">
 		<h1>{{note.name}}</h1>
-		<h3>Price: {{note.price}} NotrCoin</h3>
-		<h4>{{note.ownerName}}</h4>
+		<h3 style="color: #ababab">Price: {{note.price}} NotrCoin</h3>
+		<h4 style="color: #ababab">{{note.ownerName}}</h4>
 		<br/>
 		<h4>{{note.description}}</h4>
-		<p>{{note.date}}</p>
-		<iframe align="middle" width="100%" height="200%" ng-src="{{note.ref}}"></iframe>
+		<div ng-bind="dateFormat(note.date)"> </div>
+		<!-- <center><iframe align="middle" width="80%" height="600px" ng-src="{{note.ref}}"></iframe></center> -->
 		<br/>
-		<h3>Comments: </h3>
+		<!-- <h3>Comments: </h3> -->
 		
 
 	</div>
@@ -33,9 +33,9 @@
     					<col width="100">
   					</colgroup>
   					<tr>
-					    <th>Comment</th>
+					    <th style="color: #ababab">Comment</th>
 					    <th> </th>
-					    <th>Rating</th>
+					    <th style="color: #ababab">Rating</th>
   					</tr>
 				</table>
 			</center>
@@ -71,7 +71,7 @@
 		<div style="padding:50px" class="col-md-8 same-height new-comment-button">
 			<input type="comment" ng-model="comment.body" class="comment-box" placeholder="Enter Comment" required>
 					<div style="display:inline;" class="rating" >
-							<span id="startImage" ng-repeat="rating in ratings" ng-click="setRating($index)">☆</span>		
+							<span id="startImage" ng-repeat="rating in ratings" ng-click="setRating($index)" ng-class="{'ratingSelected': $index < selectedRating}">☆</span>		
 						
 					</div>
 			<div>
