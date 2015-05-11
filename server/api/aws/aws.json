@@ -2,5 +2,5 @@
   "accessKeyId": "xxxx",
   "secretAccessKey": "xxxx",
   "region" : "us-west-2",
-  "bucket": "xxxx"
+  "bucket": "cs498rk-notr"
 }

@@ -7,7 +7,8 @@ angular.module('notrApp', [
   'ngRoute',
   'ngFileUpload',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'xml'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -17,6 +18,7 @@ angular.module('notrApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('xmlHttpInterceptor');
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
@@ -24,9 +26,18 @@ angular.module('notrApp', [
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
+
+        console.log(config);
+
         if ($cookieStore.get('token')) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
+
+        console.log(config.url === 'https://cs498rk-notr.s3.amazonaws.com/');
+        if(config.url === 'https://cs498rk-notr.s3.amazonaws.com/') {
+          delete config.headers['Authorization'];
+        }
+
         return config;
       },
 

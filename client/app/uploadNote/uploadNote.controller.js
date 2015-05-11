@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('UploadNoteCtrl', [ '$scope', 'Upload', '$http','notesService', function ($scope, Upload, $http, notesService) {
+  .controller('UploadNoteCtrl', [ '$scope', 'User', 'Upload', '$http','notesService', function ($scope, User, Upload, $http, notesService) {
 
   	/*$scope.$watch('files', function () {
         $scope.upload($scope.files);
@@ -17,14 +17,12 @@ angular.module('notrApp')
           $http.get('/api/aws?mimeType='+ file.type).success(function(response) {
             var s3Params = response;
 
-            console.log(s3Params);
-
             // File Upload for S3, but have to be caref
 
             Upload.upload({
               url: 'https://cs498rk-notr.s3.amazonaws.com/',
               method: 'POST',
-              fields : {
+              fields: {
                 'key' : 's3notr/'+ Math.round(Math.random()*10000) + '$$' + file.name,
                 'acl' : 'private',
                 'Content-Type' : file.type,
@@ -39,9 +37,16 @@ angular.module('notrApp')
                 console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
             }).success(function (data, status, headers, config) {
               console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-              notesService.createNote({
-                name: $scope.note.name
-
+              console.log(data);
+              User.get(function(user) {
+                notesService.createNote({
+                  name: $scope.name,
+                  ownerName: user.name,
+                  owner: user._id,
+                  description: $scope.description,
+                  price: $scope.price,
+                  ref: data.PostResponse.Location,
+                });
               });
             });
           });
