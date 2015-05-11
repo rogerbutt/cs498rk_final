@@ -22,7 +22,7 @@
 			</div>
 		</div>
 
-		<div ng-repeat="note in notes | orderBy:sort">	
+		<div ng-repeat="note in user.boughtNotes | orderBy:sort">	
 			<div class="row dash-notes">
 	  			<div class="col-md-3">+ {{note.name}}</div>
 	  			<div class="col-md-4">{{note.description}}</div>

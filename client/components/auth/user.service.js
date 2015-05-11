@@ -30,6 +30,12 @@ angular.module('notrApp')
           controller: 'editcard'
         }
       },
+      purchaseNote: {
+        method: 'PUT',
+        params: {
+          controller: 'purchase'
+        }
+      },
       get: {
         method: 'GET',
         params: {

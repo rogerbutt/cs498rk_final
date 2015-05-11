@@ -11,7 +11,36 @@ angular.module('notrApp')
     	$scope.note = note;
     	$scope.rating = note.ratingTotal / note.ratingNum;
         $scope.note.ref = $sce.trustAsResourceUrl(note.ref);
+        $scope.canBuy = true;
+
+
+        User.get(function(user){
+            $scope.user = user;
+
+            for(var j in user.boughtNotes) {
+                var note = user.boughtNotes[j];
+                if($scope.note._id === note._id) {
+                    $scope.canBuy = false;
+                    break;
+                }
+            }
+            console.log(user.ownedNotes);
+            for(var i in user.ownedNotes) {
+                var note = user.ownedNotes[i];
+                if($scope.note._id === note._id) {
+                    $scope.canBuy = false;
+                    break;
+                }
+            }
+        });
     });
+
+    $scope.buyNote = function() {
+        if(!$scope.canBuy)
+            return;
+
+        User.purchaseNote({ id: $scope.user._id }, { noteId: $scope.note._id });
+    }
 
     commentsService.getComments({ id: $routeParams.id }, function (comments) {
     	$scope.comments = comments;

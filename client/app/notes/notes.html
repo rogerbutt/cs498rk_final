@@ -1,15 +1,6 @@
-<html>
-<head>
-	<link rel="stylesheet" href="notes.scss">
-	<link rel="stylesheet" href="app.css">
-</head>
-
-
-
-<body>
+<div ng-include="'components/navbar/navbar.html'"></div>
 <div ng-controller="NotesCtrl"> 
-	<div ng-include="'components/navbar/navbar.html'"></div>
-
+	<div class="notes-container">
 	<div class="col-md-12">
 		<h1>{{note.name}}</h1>
 		<h3 style="color: #ababab">Price: {{note.price}} NotrCoin</h3>
@@ -76,11 +67,11 @@
 					</div>
 			<div>
 				<button ng-click="submitComment()" class="btn btn-inverse btn-md" type="submit"> Comment</button>
+
+				<button ng-show="canBuy" ng-click="buyNote()" class="btn btn-inverse btn-md" type="submit"> Buy Note</button>
+				
 			</div>
 		</div>
 	</div>
-
+	</div>
 </div>
-
-</body>
-</html>

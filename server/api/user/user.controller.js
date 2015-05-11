@@ -117,6 +117,7 @@ exports.purchase = function(req, res, next) {
         });
       }
       else {
+        console.log('here');
         res.send(403);
       }
     });
