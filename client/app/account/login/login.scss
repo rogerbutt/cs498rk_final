@@ -29,12 +29,33 @@ $btnGithubBackgroundHighlight:      #ccc;
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
 
-.login{
-	overflow:auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    z-index: 1;
-    background-attachment: fixed;
-    background-image: url("../assets/images/login.jpg");
+.login, .signup{
+	  width:40%;
+    margin:0 auto;
+    border:1px;
+    background:#efefef;
+    padding-left:30px;
+    padding-right:30px;
+    border-radius: 5px;
+    margin-top:30px;
+    box-shadow: 2px;
+    z-index:1;
+}
+
+.container{
+  width:60%;
+}
+
+.row{
+  h1 {
+    color:#707070;
+  }
+
+  label{
+    color:#ababab;
+  }
+}
+
+.btn-login, .btn-register{
+  color:#707070;
 }

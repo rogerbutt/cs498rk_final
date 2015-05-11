@@ -5,6 +5,7 @@ angular.module('notrApp')
     $routeProvider
       .when('/notes/:id', {
         templateUrl: 'app/notes/notes.html',
-        controller: 'NotesCtrl'
+        controller: 'NotesCtrl',
+        authenticate:true
       });
   });
