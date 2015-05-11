@@ -30,8 +30,8 @@
 			<table class="table table-striped">
 		        <tbody>
 		          <tr>
-		            <td><h6>{{nickname}}</h6></td>
-		            <td><h6 style="font-weight:normal;">{{expiration}}</h6></td>
+		            <td><h6 data-ng-model="user">{{nickname}}</h6></td>
+		            <td><h6 style="font-weight:normal;"> Expires: {{expiration}}</h6></td>
 		            <td>
 		            	<script type="text/ng-template" id="creditCard.html">
 		            		<div class="modal-header">
@@ -41,15 +41,15 @@
 		            			<form ng-submit="editCard()">
 		            				<div class="form-group">
 		            					<label for="nickname">Nickname of card</label>
-		            					<input type="text" class="form-control" id="nickname" placeholder="Jane Does's Credit Card"></input>
+		            					<input type="text" class="form-control" id="nickname" placeholder="Jane Does's Credit Card" ng-model="nickname"></input>
 		            				</div>
 		            				<div class="form-group">
 		            					<label for="cardnumber">Card number</label>
-		            					<input type="number" class="form-control" id="cardnumber" placeholder="1234567890123456"></input>
+		            					<input type="number" class="form-control" id="cardnumber" placeholder="1234567890123456" ng-model="cardnumber"></input>
 		            				</div>
 		            				<div class="form-group">
 		            					<label for="expiration">Expiration date</label>
-		            					<input type="number" class="form-control" id="expiration" placeholder="mmyy"></input>
+		            					<input type="number" class="form-control" id="expiration" placeholder="mmyy" ng-model="expiration"></input>
 		            				</div>
 		            			</form>
 		            		</div>
