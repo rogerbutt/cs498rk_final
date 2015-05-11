@@ -8,4 +8,4 @@ angular.module('notrApp')
         controller: 'LibraryCtrl',
         authenticate: true
       });
-  });
+});

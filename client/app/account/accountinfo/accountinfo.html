@@ -8,30 +8,62 @@
 	</div>
 	<br />
 	<div class="row">
-		<div class="col-sm-2">
+		<div class="col-sm-4">
       		<img src="./assets/images/sample.png" alt="profile picture" />
 		</div>
-		<div class="col-sm-10">
-			<h4>Jane Doe</h4>
-			<p>Your current balance is ${{user.balance}}.</p>
-			<a class="btn btn-default" href="#" role="button">Add Credit</a>
+		<div class="col-sm-8">
+			<h4>{{user.name}}</h4>
+			<p>Your current balance is ${{user.credits}}.</p>
+			<form class="form-inline" ng-submit="credit()">
+				<label for="creditInput">Credits</label>
+				<input type="number" class="form-control" id="creditInput" placeholder="1" min="0" ng-model="additionalCredits"></input>
+				<button type="submit" class="btn btn-default">Add Credits</button>
+			</form>
 		</div>
 	</div>
 	<br />
 	<div class="row">
 		<div class="col-sm-12">
 			<h4>Payment Information</h4>
+
 			<br />
 			<table class="table table-striped">
 		        <tbody>
 		          <tr>
-		            <td>Jane's Visa Card</td>
-		            <td>Exp: 03/17</td>
+		            <td><h6>{{nickname}}</h6></td>
+		            <td><h6 style="font-weight:normal;">{{expiration}}</h6></td>
 		            <td>
-		            	<a class="btn btn-default" href="#" role="button" style="float:right;">Edit Card</a>
+		            	<script type="text/ng-template" id="creditCard.html">
+		            		<div class="modal-header">
+		            			<h4 class="modal-title">Edit your information below</h4>
+		            		</div>
+		            		<div class="modal-body">
+		            			<form ng-submit="editCard()">
+		            				<div class="form-group">
+		            					<label for="nickname">Nickname of card</label>
+		            					<input type="text" class="form-control" id="nickname" placeholder="Jane Does's Credit Card"></input>
+		            				</div>
+		            				<div class="form-group">
+		            					<label for="cardnumber">Card number</label>
+		            					<input type="number" class="form-control" id="cardnumber" placeholder="1234567890123456"></input>
+		            				</div>
+		            				<div class="form-group">
+		            					<label for="expiration">Expiration date</label>
+		            					<input type="number" class="form-control" id="expiration" placeholder="mmyy"></input>
+		            				</div>
+		            			</form>
+		            		</div>
+		            		<div class="modal-footer">
+		            			<button class="btn btn-primary" ng-click="save()">Save</button>
+            					<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+		            		</div>
+		            	</script>
+		            	<button type="submit" class="btn btn-default" style="float:right;" ng-click="open()">{{cardMessage}}</button>
 		            </td>
 		            <td>
-		            	<a class="btn btn-default" href="#" role="button">Delete Card</a>
+		            	<form ng-submit="deleteCard()">
+		            		<button type="submit" class="btn btn-default" role="button">Delete Card</button>
+		            	</form>
 		            </td>
 		          </tr>
 		      </tbody>

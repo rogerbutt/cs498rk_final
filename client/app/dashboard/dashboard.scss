@@ -1,12 +1,21 @@
 .dashboard-container{
 	width:80%;
 	margin:0 auto;
+	margin-top:30px;
+	color:#ababab;
 }
 
-.notes-feed{
-	
+.dashboard-container a{
+	text-decoration: none;
 }
 
+.af{
+	text-decoration: none;
+}
+
+.notes-feed-head, .dash-library-head{
+	color:#707070;
+}
 .row .head{
 	display:table;
 }

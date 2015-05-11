@@ -99,9 +99,7 @@ exports.purchase = function(req, res, next) {
   User.findById(userId, function (err, user) {
     Note.findById(noteId, function (err, note) {
 
-      if(!checkPurchased(noteId, user.ownedNotes)
-        && !checkPurchased(noteId, user.boughtNotes)
-        && user.credits >= note.price) {
+      if(!checkPurchased(noteId, user.ownedNotes) && !checkPurchased(noteId, user.boughtNotes) && user.credits >= note.price) {
 
         // Credit the owner
         if(note.owner !== 'notr') {
@@ -133,7 +131,8 @@ exports.credit = function(req, res, next) {
   var credits = parseInt(req.body.credits);
 
   User.findById(userId, function (err, user) {
-    user.credits += credits;
+    // added on the front end
+    user.credits = credits;
     user.save(function(err) {
       if (err) return validationError(res, err);
       res.send(200);
@@ -142,10 +141,36 @@ exports.credit = function(req, res, next) {
 };
 
 /**
+ * Deletes the credit card on the account
+ */
+exports.deleteCard = function(req, res, next) {
+  var userId = req.user._id;
+
+  User.findById(userId, function (err, user) {
+    user.paymentInfo = "";
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+}
+
+/**
  * Get my info
  */
 exports.me = function(req, res, next) {
   var userId = req.user._id;
+
+  User.findOne({
+    _id: userId
+  }, '-salt -hashedPassword').populate('ownedNotes boughtNotes').exec(function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.json(401);
+    console.log(user);
+    res.json(user);
+  });
+
+  /*
   User.findOne({
     _id: userId
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
@@ -153,6 +178,11 @@ exports.me = function(req, res, next) {
     if (!user) return res.json(401);
     res.json(user);
   });
+
+  User.findOne({ _id: userId }).populate('ownedNotes').exec(function(err, notes) {
+    console.log('FUCK');
+    console.log(notes);
+  });*/
 };
 
 /**

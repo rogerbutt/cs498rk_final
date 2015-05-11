@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('notrApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
-    $scope.errors = {};
+  .controller('SettingsCtrl', function ($scope, User, Auth, notesService) {
+    $scope.errors = {}; 
+    $scope.user = User.get(function (result) {
+      $scope.reviews = result.boughtNotes;
+      return result;
+    });
+
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;
@@ -32,4 +37,4 @@ $.fn.stars = function() {
         // Replace the numerical value with stars
         $(this).html($span);
     });
-}
+};

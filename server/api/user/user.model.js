@@ -13,8 +13,8 @@ var UserSchema = new Schema({
     default: 'user'
   },
   credits: Number,
-  ownedNotes: [String],
-  boughtNotes: [String],
+  ownedNotes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
+  boughtNotes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
   hashedPassword: String,
   paymentInfo: String,
   provider: String,
