@@ -12,7 +12,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
-  credits: Number,
+  credits: { type: Number, default: 0 },
   ownedNotes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
   boughtNotes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
   hashedPassword: String,
