@@ -1,77 +1,94 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div ng-controller="NotesCtrl"> 
 	<div class="notes-container">
-	<div class="col-md-12">
-		<h1>{{note.name}}</h1>
-		<h3 style="color: #ababab">Price: {{note.price}} NotrCoin</h3>
-		<h4 style="color: #ababab">{{note.ownerName}}</h4>
-		<br/>
-		<h4>{{note.description}}</h4>
-		<div ng-bind="dateFormat(note.date)"> </div>
-		<!-- <center><iframe align="middle" width="80%" height="600px" ng-src="{{note.ref}}"></iframe></center> -->
-		<br/>
-		<!-- <h3>Comments: </h3> -->
-		
-
-	</div>
-
-	<div class="row dash-comments">
-			<div class="col-md-3">
-			<center>
-				<table style="border-spacing:100000000px; border-collapse:separate;">
-  					<colgroup>
-    					<col width="100" span="2">
-    					<col width="100">
-  					</colgroup>
-  					<tr>
-					    <th style="color: #ababab">Comment</th>
-					    <th> </th>
-					    <th style="color: #ababab">Rating</th>
-  					</tr>
-				</table>
-			</center>
+		<span><h1 style="color: #707070">{{note.name}}</h1> <a  style="margin-bottom:20px;" href="/library" ng-show="canBuy" ng-click="buyNote()" class="btn btn-primary btn-md" type="submit"> Buy Note</a></span>
+		<div class="row">
+			<div class="col-md-6">
+				<iframe align="middle" width="100%" height="600px" ng-src="{{note.ref}}"></iframe>	
 			</div>
-		</div>
-	<div ng-repeat='comment in comments'>
-		<div class="row dash-comments">
-			<div class="col-md-3">
-			<center>
-				<table style="border-spacing:100000px; border-collapse:separate;">
-  					<colgroup>
-    					<col width="100" span="2">
-    					<col width="100">
-  					</colgroup>
-  					<tr></tr>
-  					<div> 
-  					<tr>
-					    <td style="padding-bottom:10px;">{{comment.body}}</td>
-					    <td>       </td>
-					    <td style="padding-bottom:10px;"><div style="display:inline;" ng-repeat="i in getNumber(comment.rating) track by $index">
-							<div style="display:inline;" class="rating2">
-								<span>☆</span>		
-							</div>
-				</div></td>
-  					</tr>
-				</table>
-			</center>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-sm-12">
-		<div style="padding:50px" class="col-md-8 same-height new-comment-button">
-			<input type="comment" ng-model="comment.body" class="comment-box" placeholder="Enter Comment" required>
-					<div style="display:inline;" class="rating" >
-							<span id="startImage" ng-repeat="rating in ratings" ng-click="setRating($index)" ng-class="{'ratingSelected': $index < selectedRating}">☆</span>		
-						
+			<div class="col-md-6">
+				<h4 style="color: #ababab">Owner: {{note.ownerName}}</h4>
+				<h4 style="color: #ababab">Price: {{note.price}} NotrCoin</h4>
+				<p style="font-size: 14px"><span style="color:#707070">Description: </span><span style="color:#ababab">{{note.description}}</span><p>
+				<div ng-bind="dateFormat(note.date)"> </div>
+				<!-- <center><iframe align="middle" width="80%" height="600px" ng-src="{{note.ref}}"></iframe></center> -->
+				<br/>
+				<!-- <h3>Comments: </h3> -->
+
+				<div class="row dash-comments">
+					<div class="col-md-8">
+						<center>
+							<table style="border-spacing:100000000px; border-collapse:separate;">
+			  					<colgroup>
+			    					<col width="100" span="2">
+			    					<col width="100">
+			  					</colgroup>
+			  					<tr>
+								    <th style="color: #ababab">Comment</th>
+								    <th> </th>
+								    <th style="color: #ababab">Rating</th>
+			  					</tr>
+							</table>
+						</center>
 					</div>
-			<div>
-				<button ng-click="submitComment()" class="btn btn-inverse btn-md" type="submit"> Comment</button>
+				</div>
+				<div ng-repeat='comment in comments'>
+					<div class="row dash-comments">
+						<div class="col-md-8">
+						<center>
+							<table style="border-spacing:100000px; border-collapse:separate;">
+			  					<colgroup>
+			    					<col width="100" span="2">
+			    					<col width="100">
+			  					</colgroup>
+			  					<tr></tr>
+			  					<div> 
+			  					<tr>
+								    <td style="padding-bottom:10px;">{{comment.body}}</td>
+								    <td>       </td>
+								    <td style="padding-bottom:10px;"><div style="display:inline;" ng-repeat="i in getNumber(comment.rating) track by $index">
+										<div style="display:inline;" class="rating2">
+											<span>☆</span>		
+										</div>
+							</div></td>
+			  					</tr>
+							</table>
+						</center>
+						</div>
+					</div>
+				</div>
 
-				<a ng-show="canBuy" ng-click="buyNote()" class="btn btn-inverse btn-md" type="submit"> Buy Note</a>
-				
+				<div style="margin-top:20px;"class="row">
+					<div class="col-md-6">
+						<input class="form-control" type="text" ng-model="comment.body"  placeholder="Enter Comment" required>
+					</div>
+					<div class="col-md-6">
+						<div style="display:inline;" class="rating" >
+										<span id="startImage" ng-repeat="rating in ratings" ng-click="setRating($index)" ng-class="{'ratingSelected': $index < selectedRating}">☆</span>		
+								</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button style="margin-top:10px;" ng-click="submitComment()" class="btn btn-inverse btn-md" type="submit"> Comment</button>
+					</div>
+					
+				</div>
+				<!-- <div class="col-sm-12">
+					<div class="same-height new-comment-button">
+						<input class="form-control" type="text" ng-model="comment.body"  placeholder="Enter Comment" required>
+								<div style="display:inline;" class="rating" >
+										<span id="startImage" ng-repeat="rating in ratings" ng-click="setRating($index)" ng-class="{'ratingSelected': $index < selectedRating}">☆</span>		
+								</div>
+						<div>
+							<button ng-click="submitComment()" class="btn btn-inverse btn-md" type="submit"> Comment</button>
+
+							<a href="/library" ng-show="canBuy" ng-click="buyNote()" class="btn btn-primary btn-md" type="submit"> Buy Note</a>
+							
+						</div>
+					</div>
+				</div> -->
 			</div>
 		</div>
-	</div>
 	</div>
 </div>
