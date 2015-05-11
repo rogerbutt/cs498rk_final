@@ -27,8 +27,6 @@ angular.module('notrApp', [
       request: function (config) {
         config.headers = config.headers || {};
 
-        console.log(config);
-
         if ($cookieStore.get('token')) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
