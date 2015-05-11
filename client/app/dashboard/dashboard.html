@@ -19,8 +19,8 @@
 	  			<a href="/notes/{{note._id}}"><div class="col-md-3">+ {{note.name}}</div></a>
 	  			<div class="col-md-4">{{note.description}}</div>
 	  			<div ng-bind="dateFormat(note.date)" class="col-md-2"></div>
-	  			<div class="col-md-3" style="display:inline;">
-					<span ng-repeat="i in getNumber(5) track by $index" ng-model="note.ratingTotal/note.ratingNum">☆</span>		
+	  			<div class="col-md-3" style="display:inline;position:absolute;right:0;">
+					<span ng-repeat="i in getNumber(5) track by $index" ng-class="{'rating2':$index < note.ratingTotal/note.ratingNum}">☆</span>		
 				</div>
 			</div>
 		</div> 
